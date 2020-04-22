@@ -137,7 +137,8 @@ public class Step02IfForTest extends PlainTestCase {
                 break;
             }
         }
-        log(sea); // your answer? => 
+        log(sea); // your answer? => hangar
+        // Right
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
@@ -153,7 +154,8 @@ public class Step02IfForTest extends PlainTestCase {
             }
         });
         String sea = sb.toString();
-        log(sea); // your answer? => 
+        log(sea); // your answer? => dockside
+        // Right
     }
 
     // ===================================================================================
