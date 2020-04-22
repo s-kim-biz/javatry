@@ -80,16 +80,19 @@ public class Step01VariableTest extends PlainTestCase {
         sea = land;
         land++;
         log(sea); // your answer? => 415
+        // Right
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_variable_reassigned_BigDecimal() {
         BigDecimal sea = new BigDecimal(94);
         BigDecimal land = new BigDecimal(415);
-        sea = land;
-        sea = land.add(new BigDecimal(1));
-        sea.add(new BigDecimal(1));
-        log(sea); // your answer? => 
+        sea = land; // 415
+        sea = land.add(new BigDecimal(1)); //416
+        sea.add(new BigDecimal(1)); //416
+        log(sea); // your answer? => 417
+        // wrong
+        // immutableなので戻り値だけが変更される
     }
 
     // ===================================================================================
