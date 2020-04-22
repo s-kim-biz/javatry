@@ -166,7 +166,13 @@ public class Step02IfForTest extends PlainTestCase {
      * (prepareStageList()のリストから "a" が含まれているものだけのリストを作成して、それをループで回してログに表示しましょう。(Stream APIなしで))
      */
     public void test_iffor_making() {
-        // write if-for here
+        List<String> stageList = prepareStageList();
+        List<String> resultList = new ArrayList<>();
+        stageList.forEach(stage -> {
+            if(stage.contains("a")) resultList.add(stage);
+        });
+
+        for(String result : resultList) { log(result); }
     }
 
     // ===================================================================================
