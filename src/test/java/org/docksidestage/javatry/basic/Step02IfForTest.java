@@ -122,6 +122,7 @@ public class Step02IfForTest extends PlainTestCase {
             sea = stage;
         }
         log(sea); // your answer? => magiclamp
+        // Right
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
@@ -144,7 +145,7 @@ public class Step02IfForTest extends PlainTestCase {
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_for_listforeach_basic() {
         List<String> stageList = prepareStageList();
-        StringBuilder sb = new StringBuilder();
+        StringBuilder sb = new StringBuilder(); // StrigBuilder -> mutable
         stageList.forEach(stage -> {
             if (sb.length() > 0) {
                 return;
@@ -168,11 +169,15 @@ public class Step02IfForTest extends PlainTestCase {
     public void test_iffor_making() {
         List<String> stageList = prepareStageList();
         List<String> resultList = new ArrayList<>();
+        // TODO Stream APIなしでやってみてください winkichanwi
         stageList.forEach(stage -> {
-            if(stage.contains("a")) resultList.add(stage);
+            if (stage.contains("a"))
+                resultList.add(stage);
         });
 
-        for(String result : resultList) { log(result); }
+        for (String result : resultList) {
+            log(result);
+        }
     }
 
     // ===================================================================================
@@ -184,16 +189,23 @@ public class Step02IfForTest extends PlainTestCase {
      */
     public void test_iffor_refactor_foreach_to_forEach() {
         List<String> stageList = prepareStageList();
+        List<String> lastOne = new ArrayList<>();
         String sea = null;
-        for (String stage : stageList) {
+        Boolean b = false;
+        stageList.forEach(stage -> {
             if (stage.startsWith("br")) {
-                continue;
+                return;
             }
-            sea = stage;
             if (stage.contains("ga")) {
-                break;
+                lastOne.add(stage);
+                return;
             }
-        }
+            if (!lastOne.isEmpty() && lastOne.get(lastOne.size() - 1).contains("ga")) {
+                return;
+            }
+
+        });
+        sea = lastOne.get(lastOne.size() - 1);
         log(sea); // should be same as before-fix
     }
 
@@ -203,12 +215,26 @@ public class Step02IfForTest extends PlainTestCase {
      * <pre>
      * _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
      * your question here (ここにあなたの質問を):
-     * 
+     *
      * _/_/_/_/_/_/_/_/_/_/
      * </pre>
      */
     public void test_iffor_yourExercise() {
-        // write your code here
+        String str1 = "ab";
+        String str2 = new String("ab");
+        if (str1 == str2) {
+            log("address match!");
+        } else {
+            log("address not match!");
+        }
+
+        String str3 = "ab";
+        String str4 = "ab";
+        if (str3 == str4) {
+            log("address match!");
+        } else {
+            log("address not match!");
+        }
     }
 
     // ===================================================================================

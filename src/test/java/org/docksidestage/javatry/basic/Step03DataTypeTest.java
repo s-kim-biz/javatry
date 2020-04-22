@@ -54,7 +54,8 @@ public class Step03DataTypeTest extends PlainTestCase {
             BigDecimal addedDecimal = amba.add(new BigDecimal(land));
             sea = String.valueOf(addedDecimal);
         }
-        log(sea); // your answer? => 
+        log(sea); // your answer? => 18.4
+        // right
     }
 
     // ===================================================================================
@@ -70,19 +71,22 @@ public class Step03DataTypeTest extends PlainTestCase {
         double amba = 2.3d;
         char miraco = 'a';
         boolean dohotel = miraco == 'a';
-        if (dohotel && dstore >= piari) {
+        if (dohotel && dstore >= piari) { // how it works?
             bonvo = sea;
             land = (short) bonvo;
             bonvo = piari;
             sea = (byte) land;
             if (amba == 2.3D) {
-                sea = (byte) amba;
+                sea = (byte) amba; // why (byte) 2.3D -> 2
+                // Double -> 符号１、指数１１、仮数５２
+                // 仮数の最後の１Byteが(Byte)変換に使われるのかな
             }
         }
         if (dstore > piari) {
             sea = 0;
         }
-        log(sea); // your answer? => 
+        log(sea); // your answer? => 127(x), 2(o)
+        // Todo how (byte) works
     }
 
     // ===================================================================================
@@ -92,7 +96,8 @@ public class Step03DataTypeTest extends PlainTestCase {
     public void test_datatype_object() {
         St3ImmutableStage stage = new St3ImmutableStage("hangar");
         String sea = stage.getStageName();
-        log(sea); // your answer? => 
+        log(sea); // your answer? => hangar
+        // right
     }
 
     private static class St3ImmutableStage {
