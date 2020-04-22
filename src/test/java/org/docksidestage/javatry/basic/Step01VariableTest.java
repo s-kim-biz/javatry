@@ -249,5 +249,10 @@ public class Step01VariableTest extends PlainTestCase {
      */
     public void test_variable_yourExercise() {
         // write your code here
+        int i = 1;
+        int j = 10;
+        int k = 100;
+        String str = "www";
+        log(str + i + j + " , " + str + (i + j));
     }
 }
