@@ -110,7 +110,8 @@ public class Step02IfForTest extends PlainTestCase {
                 sea = stage;
             }
         }
-        log(sea); // your answer? => 
+        log(sea); // your answer? => dockside
+        // Right
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
