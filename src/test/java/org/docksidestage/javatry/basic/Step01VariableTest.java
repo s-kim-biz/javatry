@@ -98,15 +98,15 @@ public class Step01VariableTest extends PlainTestCase {
     // ===================================================================================
     //                                                                   Instance Variable
     //                                                                   =================
-    private String instanceBroadway;
-    private int instanceDockside;
-    private Integer instanceHangar;
-    private String instanceMagiclamp;
+    private String instanceBroadway; //null
+    private int instanceDockside; // 0
+    private Integer instanceHangar; // null
+    private String instanceMagiclamp; //null
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_variable_instance_variable_default_String() {
         String sea = instanceBroadway;
-        log(sea); // your answer? => 
+        log(sea); // your answer? => null
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
