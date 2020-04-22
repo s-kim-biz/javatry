@@ -24,7 +24,7 @@ import org.docksidestage.unit.PlainTestCase;
  * Operate exercise as javadoc. If it's question style, write your answer before test execution. <br>
  * (javadocの通りにエクササイズを実施。質問形式の場合はテストを実行する前に考えて答えを書いてみましょう)
  * @author jflute
- * @author your_name_here
+ * @author saeyoung kim
  */
 public class Step01VariableTest extends PlainTestCase {
 
@@ -47,7 +47,15 @@ public class Step01VariableTest extends PlainTestCase {
         String piari = null;
         String dstore = "mai";
         sea = sea + land + piari + ":" + dstore;
-        log(sea); // your answer? => 
+        log(sea); // your answer? => mystic8nullmai
+        /*
+            pulbic void print(String s)
+            Prints a string. If the argument is null then the string "null" is printed.
+            Otherwise, the string's characters are converted into bytes according to the platform's default character encoding,
+            and these bytes are written in exactly the manner of the write(int) method.
+
+            From https://docs.oracle.com/javase/6/docs/api/java/io/PrintStream.html#print(java.lang.String)
+        */
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
@@ -56,7 +64,13 @@ public class Step01VariableTest extends PlainTestCase {
         String land = "oneman";
         sea = land;
         land = land + "'s dreams";
-        log(sea); // your answer? => 
+        log(sea); // your answer? => oneman
+        // Pass by value と Pass by referenceを聞く
+        // Java is strictly pass by value
+        // ただし、Objectをpassする際にそのReference(Address in heap)をpass by valueする
+        // Primitiveは本当のpass by value
+        // immutableなObjectは新たな参照先を作る
+        // mutableなObjectは既存の参照先を使い回す
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
@@ -65,7 +79,7 @@ public class Step01VariableTest extends PlainTestCase {
         int land = 415;
         sea = land;
         land++;
-        log(sea); // your answer? => 
+        log(sea); // your answer? =>
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
