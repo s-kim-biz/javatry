@@ -48,6 +48,10 @@ public class Step01VariableTest extends PlainTestCase {
         String dstore = "mai";
         sea = sea + land + piari + ":" + dstore;
         log(sea); // your answer? => mystic8nullmai
+        // TODO [comment] こちらは print メソッドの document なので、正しくは StringBuilder の document を見るべきです by subaru (2020/04/22)
+        // https://docs.oracle.com/javase/8/docs/api/java/lang/StringBuilder.html
+        // + オペレーターを呼び出す時、内部では StringBuilder が呼び出されています。
+        // そして StringBuilder の append メソッドの Document には 引数が null だった時の挙動が明記されています。
         /*
             pulbic void print(String s)
             Prints a string. If the argument is null then the string "null" is printed.
@@ -70,6 +74,7 @@ public class Step01VariableTest extends PlainTestCase {
         sea = land;
         land = land + "'s dreams";
         log(sea); // your answer? => oneman
+        // TODO [comment] とても丁寧！いいですね。 by subaru (2020/04/22)
         // Pass by value と Pass by referenceを聞く
         // Java is strictly pass by value
         // ただし、Objectをpassする際にそのReference(Address in heap)をpass by valueする
@@ -176,6 +181,7 @@ public class Step01VariableTest extends PlainTestCase {
         helpMethodArgumentMethodcall(sea, land);
         log(sea); // your answer? => harbor416
         // Right
+        // TODO 回答としてはあってるけど、String もクラスであるため reference type だね。 by subaru (2020/04/22)
         // String = Primitive type
         // StringBuilder = class
         // "a" + "b" => StringBuilderに変換される
@@ -225,6 +231,8 @@ public class Step01VariableTest extends PlainTestCase {
      * o すべての変数をlog()でカンマ区切りの文字列で表示
      * </pre>
      */
+    // TODO この書き方だと sea と land はインスタンス変数です。 by subaru (2020/04/22)
+    // test_variable_writing メソッドのローカル変数として書き直してみよう！
     String sea = "mystic";
     Integer land = null;
     int piari;
@@ -243,7 +251,7 @@ public class Step01VariableTest extends PlainTestCase {
      * <pre>
      * _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
      * your question here (ここにあなたの質問を):
-     * 
+     *
      * _/_/_/_/_/_/_/_/_/_/
      * </pre>
      */
