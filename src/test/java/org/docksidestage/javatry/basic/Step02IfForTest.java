@@ -169,11 +169,15 @@ public class Step02IfForTest extends PlainTestCase {
     public void test_iffor_making() {
         List<String> stageList = prepareStageList();
         List<String> resultList = new ArrayList<>();
+        // TODO Stream APIなしでやってみてください winkichanwi
         stageList.forEach(stage -> {
-            if(stage.contains("a")) resultList.add(stage);
+            if (stage.contains("a"))
+                resultList.add(stage);
         });
 
-        for(String result : resultList) { log(result); }
+        for (String result : resultList) {
+            log(result);
+        }
     }
 
     // ===================================================================================
@@ -192,16 +196,16 @@ public class Step02IfForTest extends PlainTestCase {
             if (stage.startsWith("br")) {
                 return;
             }
-            if (stage.contains("ga")){
+            if (stage.contains("ga")) {
                 lastOne.add(stage);
                 return;
             }
-            if (!lastOne.isEmpty() && lastOne.get(lastOne.size()-1).contains("ga")) {
+            if (!lastOne.isEmpty() && lastOne.get(lastOne.size() - 1).contains("ga")) {
                 return;
             }
 
         });
-        sea = lastOne.get(lastOne.size()-1);
+        sea = lastOne.get(lastOne.size() - 1);
         log(sea); // should be same as before-fix
     }
 
@@ -211,26 +215,24 @@ public class Step02IfForTest extends PlainTestCase {
      * <pre>
      * _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
      * your question here (ここにあなたの質問を):
-     * 
+     *
      * _/_/_/_/_/_/_/_/_/_/
      * </pre>
      */
     public void test_iffor_yourExercise() {
         String str1 = "ab";
         String str2 = new String("ab");
-        if(str1 == str2) {
+        if (str1 == str2) {
             log("address match!");
-        }
-        else {
+        } else {
             log("address not match!");
         }
 
         String str3 = "ab";
         String str4 = "ab";
-        if(str3 == str4) {
+        if (str3 == str4) {
             log("address match!");
-        }
-        else {
+        } else {
             log("address not match!");
         }
     }

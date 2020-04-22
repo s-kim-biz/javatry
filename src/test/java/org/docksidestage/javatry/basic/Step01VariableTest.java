@@ -198,6 +198,7 @@ public class Step01VariableTest extends PlainTestCase {
         // Right
         // in helpMethodArgumentVariable , sea reference new StringBuilder.
         // so there is no change of value sea before call
+        // NOTE ここ補足しますが、helpMethodArgumentVariableでのseaはローカルスコープになったので結果は呼び元で反映しないのです winkichanwi
     }
 
     private void helpMethodArgumentVariable(StringBuilder sea, int land) {
@@ -243,7 +244,7 @@ public class Step01VariableTest extends PlainTestCase {
      * <pre>
      * _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
      * your question here (ここにあなたの質問を):
-     * 
+     *
      * _/_/_/_/_/_/_/_/_/_/
      * </pre>
      */
