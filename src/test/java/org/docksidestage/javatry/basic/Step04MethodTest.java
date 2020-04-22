@@ -37,6 +37,7 @@ public class Step04MethodTest extends PlainTestCase {
         String sea = supplySomething();
         log(sea); // your answer? => over
         // side effect in method of supplySomething()
+        // Right
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
@@ -44,7 +45,13 @@ public class Step04MethodTest extends PlainTestCase {
         String sea = functionSomething("mystic");
         consumeSomething(supplySomething());
         runnableSomething();
-        log(sea); // your answer? => 
+        log(sea); // your answer? => mysmys
+        // in function: mysmys
+        // in supply: over
+        // in consume: mystic
+        // in runnable: outofshadow
+        // mysmys
+        // Right
     }
 
     private String functionSomething(String name) {
