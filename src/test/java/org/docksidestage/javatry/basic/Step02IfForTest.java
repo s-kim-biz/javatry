@@ -193,14 +193,14 @@ public class Step02IfForTest extends PlainTestCase {
         String sea = null;
         Boolean b = false;
         stageList.forEach(stage -> {
+            if (!lastOne.isEmpty() && lastOne.get(lastOne.size() - 1).contains("ga")) {
+                return;
+            }
             if (stage.startsWith("br")) {
                 return;
             }
             if (stage.contains("ga")) {
                 lastOne.add(stage);
-                return;
-            }
-            if (!lastOne.isEmpty() && lastOne.get(lastOne.size() - 1).contains("ga")) {
                 return;
             }
 
