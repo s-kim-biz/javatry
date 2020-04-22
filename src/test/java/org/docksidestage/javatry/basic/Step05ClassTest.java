@@ -50,6 +50,9 @@ public class Step05ClassTest extends PlainTestCase {
         Integer sea = booth.getSalesProceeds();
         log(sea); // your answer? => 10000
         // Right
+        // after fix
+        // 7400
+        // Right
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
@@ -67,6 +70,11 @@ public class Step05ClassTest extends PlainTestCase {
         // "Failed to buy one-day passport: money=7399
         // Error message with Short money: 7399
         // 9
+        // Right
+        // after fix
+        // "Failed to buy one-day passport: money=7399
+        // Error message with Short money: 7399
+        // 10
         // Right
     }
 
