@@ -15,6 +15,8 @@
  */
 package org.docksidestage.bizfw.basic.buyticket;
 
+import org.docksidestage.bizfw.basic.buyticket.Ticket;
+
 /**
  * @author jflute
  */
@@ -25,6 +27,7 @@ public class TicketBooth {
     //                                                                          ==========
     private static final int MAX_QUANTITY = 10;
     private static final int ONE_DAY_PRICE = 7400; // when 2019/06/15
+    private static final int TWO_DAY_PRICE = 13200;
 
     // ===================================================================================
     //                                                                           Attribute
@@ -42,17 +45,43 @@ public class TicketBooth {
     //                                                                          Buy Ticket
     //                                                                          ==========
     public void buyOneDayPassport(int handedMoney) {
+        isPossibleToBuyPassport(quantity, handedMoney, ONE_DAY_PRICE);
+        --quantity;
+        addSalesProceeds(ONE_DAY_PRICE);
+    }
+
+    public Ticket buyOneDayPassportTicket(int handedMoney) {
+        isPossibleToBuyPassport(quantity, handedMoney, ONE_DAY_PRICE);
+        --quantity;
+        return new Ticket(ONE_DAY_PRICE);
+    }
+
+    public Integer buyTwoDayPassport(int handedMoney) {
+        isPossibleToBuyPassport(quantity, handedMoney, TWO_DAY_PRICE);
+        quantity -= 2;
+        addSalesProceeds(TWO_DAY_PRICE);
+        return handedMoney - TWO_DAY_PRICE;
+    }
+
+    public TicketBuyResult buyTwoDayPassportTickets(int handedMoney) {
+        isPossibleToBuyPassport(quantity, handedMoney, TWO_DAY_PRICE);
+        quantity -= 2;
+        return new TicketBuyResult(handedMoney, TWO_DAY_PRICE);
+    }
+    private void isPossibleToBuyPassport(int quantity, int handedMoney, int price) {
         if (quantity <= 0) {
             throw new TicketSoldOutException("Sold out");
         }
-        if (handedMoney < ONE_DAY_PRICE) {
+        if (handedMoney < price) {
             throw new TicketShortMoneyException("Short money: " + handedMoney);
         }
-        --quantity;
+    }
+
+    private void addSalesProceeds(int price) {
         if (salesProceeds != null) {
-            salesProceeds = salesProceeds + ONE_DAY_PRICE;
+            salesProceeds = salesProceeds + price;
         } else {
-            salesProceeds = ONE_DAY_PRICE;
+            salesProceeds = price;
         }
     }
 
