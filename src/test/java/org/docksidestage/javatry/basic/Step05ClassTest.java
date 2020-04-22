@@ -56,7 +56,8 @@ public class Step05ClassTest extends PlainTestCase {
     public void test_class_howToUse_nosales() {
         TicketBooth booth = new TicketBooth();
         Integer sea = booth.getSalesProceeds();
-        log(sea); // your answer? => 
+        log(sea); // your answer? => null
+        // Right
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
