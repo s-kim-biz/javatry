@@ -85,6 +85,7 @@ public class Step04MethodTest extends PlainTestCase {
             sea = sea + mutable.getStageName().length();
         }
         log(sea); // your answer? => 910
+        // Right
     }
 
     private int helloMutable(int sea, Boolean land, St4MutableStage piari) {
@@ -110,8 +111,8 @@ public class Step04MethodTest extends PlainTestCase {
     // ===================================================================================
     //                                                                   Instance Variable
     //                                                                   =================
-    private int inParkCount;
-    private boolean hasAnnualPassport;
+    private int inParkCount; // 0
+    private boolean hasAnnualPassport; // false
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_method_instanceVariable() {
@@ -123,7 +124,8 @@ public class Step04MethodTest extends PlainTestCase {
         }
         ++sea;
         sea = inParkCount;
-        log(sea); // your answer? => 
+        log(sea); // your answer? => 100
+        // Right
     }
 
     private void offAnnualPassport(boolean hasAnnualPassport) {
@@ -160,12 +162,38 @@ public class Step04MethodTest extends PlainTestCase {
      */
     public void test_method_making() {
         // comment out after making these methods
-        //String replaced = replaceCtoB(replaceAtoB("ABC"));
-        //String sea = addPrefix("broadway", replaced);
-        //if (isAvailableLogging()) {
-        //    showSea(sea);
-        //}
+        String replaced = replaceCtoB(replaceAtoB("ABC"));
+        String sea = addPrefix("broadway", replaced);
+        if (isAvailableLogging()) {
+            showSea(sea);
+        }
     }
 
     // write methods here
+    private String replaceAtoB(String str) {
+        return str.replace('A','B');
+    }
+
+    private String replaceCtoB(String str) {
+        StringBuilder sb = new StringBuilder(str);
+        for(int i = 0; i < str.length(); ++i) {
+            if(sb.charAt(i) == 'C') sb.setCharAt(i, 'B');
+        }
+        return sb.toString();
+    }
+
+    private String addPrefix(String str1, String str2) {
+        return str1 + ":" + str2;
+    }
+
+    private boolean availableLogging = true;
+
+    private boolean isAvailableLogging() {
+        return availableLogging;
+    }
+
+    private void showSea(String str) {
+        log(str);
+        return;
+    }
 }
