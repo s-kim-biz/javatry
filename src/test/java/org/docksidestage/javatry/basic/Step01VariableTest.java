@@ -56,6 +56,11 @@ public class Step01VariableTest extends PlainTestCase {
 
             From https://docs.oracle.com/javase/6/docs/api/java/io/PrintStream.html#print(java.lang.String)
         */
+        /*
+            public static String valueOf(Object obj) {
+                return (obj == null) ? "null" : obj.toString();
+            }
+         */
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
@@ -107,18 +112,21 @@ public class Step01VariableTest extends PlainTestCase {
     public void test_variable_instance_variable_default_String() {
         String sea = instanceBroadway;
         log(sea); // your answer? => null
+        // Right
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_variable_instance_variable_default_int() {
         int sea = instanceDockside;
-        log(sea); // your answer? => 
+        log(sea); // your answer? => 0
+        // Right
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_variable_instance_variable_default_Integer() {
         Integer sea = instanceHangar;
-        log(sea); // your answer? => 
+        log(sea); // your answer? => null
+        // Right
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
@@ -127,7 +135,8 @@ public class Step01VariableTest extends PlainTestCase {
         instanceMagiclamp = "magician";
         helpInstanceVariableViaMethod(instanceMagiclamp);
         String sea = instanceBroadway + "|" + instanceDockside + "|" + instanceHangar + "|" + instanceMagiclamp;
-        log(sea); // your answer? => 
+        log(sea); // your answer? => bigband|1|null|magician
+        // Right
     }
 
     private void helpInstanceVariableViaMethod(String instanceMagiclamp) {
