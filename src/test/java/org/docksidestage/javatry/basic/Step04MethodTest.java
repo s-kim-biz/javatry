@@ -182,6 +182,7 @@ public class Step04MethodTest extends PlainTestCase {
         return sb.toString();
     }
 
+    // TODO 引数の名前は再検討してみましょう winkichanwi
     private String addPrefix(String str1, String str2) {
         return str1 + ":" + str2;
     }
