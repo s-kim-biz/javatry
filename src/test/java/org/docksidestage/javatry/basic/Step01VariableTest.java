@@ -65,6 +65,8 @@ public class Step01VariableTest extends PlainTestCase {
         // + operator がどのような処理をしているかは、この辺りの解説が分かりやすいと思います。
         // https://stackoverflow.com/questions/4648607/stringbuilder-stringbuffer-vs-operator
 
+        // TODO DONE
+
         // https://docs.oracle.com/javase/8/docs/api/java/lang/StringBuilder.html
         // + オペレーターを呼び出す時、内部では StringBuilder が呼び出されています。
         // そして StringBuilder の append メソッドの Document には 引数が null だった時の挙動が明記されています。
@@ -202,6 +204,7 @@ public class Step01VariableTest extends PlainTestCase {
         // 確かにその通りです。すいません。ただ、immutableなクラスであるので
         // 値がPrimitive typeのように値自体がコピーされる意味（実際は、Heapに新たな参照できる値を作る）として捉えていました。
         // TODO [comment] Good!! by subaru (2020/04/23)
+        // TODO DONE
 
         // String = Primitive type
         // StringBuilder = class
@@ -260,9 +263,17 @@ public class Step01VariableTest extends PlainTestCase {
     // 少し発展だけど piari のアクセスレベルまで設定できるとより良いです。
     // public にすべきか、private にすべきかなど。
     // test_variable_writing メソッドのローカル変数として書き直してみよう！
-    int piari;
+
+    // 確かにおっしゃている通りです。これはあとで継承されることもないと思うことと、
+    // 継承されていてもこの関数が使われることはないと思うのでprivate にすべきであると思います。
+    // private int piari;
+
+    // また、メソッドないで使われるものは必ずしもInitializeしないと値が存在しない
+    // まるで、C++でグローバル変数には初期化しなくても値が自動的にされることと違って
+    // ローカル変数は勝手な値が入ってしまうことみたいな感じです。
 
     public void test_variable_writing() {
+        int piari = 0;
         String sea = "mystic";
         Integer land = null;
 
@@ -288,6 +299,7 @@ public class Step01VariableTest extends PlainTestCase {
         int i = 1;
         int j = 10;
         // TODO kim unused warning here by jflute (2020/04/23)
+        // TODO DONE
         String str = "www";
         log(str + i + j + " , " + str + (i + j));
     }

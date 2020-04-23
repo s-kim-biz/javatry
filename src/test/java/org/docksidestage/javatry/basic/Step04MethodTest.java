@@ -183,8 +183,9 @@ public class Step04MethodTest extends PlainTestCase {
     }
 
     // TODO 引数の名前は再検討してみましょう winkichanwi
-    private String addPrefix(String str1, String str2) {
-        return str1 + ":" + str2;
+    // TODO DONE
+    private String addPrefix(String prefix, String suffix) {
+        return prefix + ":" + suffix;
     }
 
     private boolean availableLogging = true;
