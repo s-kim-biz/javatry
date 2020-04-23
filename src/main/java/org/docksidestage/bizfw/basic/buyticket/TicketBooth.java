@@ -15,7 +15,7 @@
  */
 package org.docksidestage.bizfw.basic.buyticket;
 
-import javax.print.DocFlavor;
+// TODO kim 不要な import 文は消しましょう by subaru (2020/04/23)
 
 /**
  * @author jflute
@@ -45,6 +45,8 @@ public class TicketBooth {
     // ===================================================================================
     //                                                                          Buy Ticket
     //                                                                          ==========
+    // TODO kim buyOneDayPassport と buyOneDayPassportTicket もう少し共通化してみましょう by subaru (2020/04/23)
+    // この二つは処理としてはほとんど同じで、戻り値だけ違うということだと思うので、共通化できます。
     public void buyOneDayPassport(int handedMoney) {
         isPossibleToBuyPassport(quantity, handedMoney, ONE_DAY_PRICE);
         --quantity;
@@ -132,13 +134,11 @@ public class TicketBooth {
     }
 
     public static String getTicketInfo(Ticket t) {
-        if(t.getDisplayPrice() == ONE_DAY_PRICE) {
+        if (t.getDisplayPrice() == ONE_DAY_PRICE) {
             return "one-day price ticket";
-        }
-        else if(t.getDisplayPrice() == TWO_DAY_PRICE) {
+        } else if (t.getDisplayPrice() == TWO_DAY_PRICE) {
             return "two-days price ticket";
-        }
-        else {
+        } else {
             return "uncertain ticket";
         }
     }
