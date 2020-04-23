@@ -22,10 +22,19 @@ import org.docksidestage.bizfw.basic.objanimal.Animal;
 import org.docksidestage.bizfw.basic.objanimal.BarkedSound;
 import org.docksidestage.bizfw.basic.objanimal.Cat;
 import org.docksidestage.bizfw.basic.objanimal.Dog;
+import org.docksidestage.bizfw.basic.objanimal.Tiger;
 import org.docksidestage.bizfw.basic.objanimal.Zombie;
+import org.docksidestage.bizfw.basic.objanimal.Tetrapod;
 import org.docksidestage.bizfw.basic.objanimal.loud.AlarmClock;
 import org.docksidestage.bizfw.basic.objanimal.loud.Loudable;
 import org.docksidestage.bizfw.basic.objanimal.runner.FastRunner;
+import org.docksidestage.javatry.basic.st6.dbms.St6MySql;
+import org.docksidestage.javatry.basic.st6.dbms.Database;
+import org.docksidestage.javatry.basic.st6.dbms.St6PostgreSql;
+import org.docksidestage.javatry.basic.st6.os.St6MacOS;
+import org.docksidestage.javatry.basic.st6.os.St6OldWindowsOS;
+import org.docksidestage.javatry.basic.st6.os.St6OperationSystem;
+import org.docksidestage.javatry.basic.st6.os.St6WindowsOS;
 import org.docksidestage.unit.PlainTestCase;
 
 /**
@@ -369,7 +378,9 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
      * (FastRunnerではないAnimalクラスのコンクリートクラスをobjanimalパッケージに作成しましょう (実装はお好きなように))
      */
     public void test_objectOriented_polymorphism_makeConcrete() {
-        // your confirmation code here
+        Animal a = new Tiger();
+        String barkWord = a.bark().getBarkWord();
+        log(barkWord);
     }
 
     /**
@@ -377,7 +388,26 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
      * (Animalクラスの一部のコンクリートクラスだけがimplementsするインターフェースをobjanimal配下の新しいパッケージに作成しましょう (実装はお好きなように))
      */
     public void test_objectOriented_polymorphism_makeInterface() {
-        // your confirmation code here
+        /*
+        Animal c = new Cat();
+        Animal d = new Dog();
+        Animal t = new Tiger();
+
+        cannot use of Tetrapod class.
+         */
+
+        Tetrapod c = new Cat();
+        Tetrapod d = new Dog();
+        Tetrapod t = new Tiger();
+
+        c.howToLook();
+        c.walkByFourLegs();
+        d.howToLook();
+        d.walkByFourLegs();
+        t.howToLook();
+        t.walkByFourLegs();
+
+        // we cannot use Animal class method
     }
 
     // ===================================================================================
@@ -387,7 +417,13 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
      * Extract St6MySql, St6PostgreSql (basic.st6.dbms)'s process to abstract class (as super class and sub-class) <br>
      * (St6MySql, St6PostgreSql (basic.st6.dbms) から抽象クラスを抽出してみましょう (スーパークラスとサブクラスの関係に))
      */
+
     public void test_objectOriented_writing_generalization_extractToAbstract() {
+        Database ms = new St6MySql();
+        Database ps = new St6PostgreSql();
+
+        log(ms.buildPagingQuery(5, 2));
+        log(ps.buildPagingQuery(5, 2));
         // your confirmation code here
     }
 
@@ -396,7 +432,18 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
      * (St6OperationSystem (basic.st6.os) からコンクリートクラスを抽出してみましょう (スーパークラスとサブクラスの関係に))
      */
     public void test_objectOriented_writing_specialization_extractToConcrete() {
-        // your confirmation code here
+        String loginIdForMac = "s.kim.for.mac@bizreach.co.jp";
+        String relativePath = "javatry/basic/st6";
+        St6OperationSystem mac = new St6MacOS(loginIdForMac);
+        log(mac.buildUserResourcePath(relativePath));
+
+        String loginIdForWindows = "s.kim.for.windows@bizreach.co.jp";
+        St6OperationSystem windows = new St6WindowsOS(loginIdForWindows);
+        log(windows.buildUserResourcePath(relativePath));
+
+        String loginIdForOldWindows = "s.kim.for.oldwindows@bizreach.co.jp";
+        St6OperationSystem oldWindows = new St6OldWindowsOS(loginIdForOldWindows);
+        log(oldWindows.buildUserResourcePath(relativePath));
     }
 
     // ===================================================================================

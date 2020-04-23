@@ -23,7 +23,7 @@ import org.slf4j.LoggerFactory;
  * The object for dog(犬).
  * @author jflute
  */
-public class Dog extends Animal implements FastRunner {
+public class Dog extends Animal implements FastRunner, Tetrapod {
     // ===================================================================================
     //                                                                          Definition
     //                                                                          ==========
@@ -49,5 +49,13 @@ public class Dog extends Animal implements FastRunner {
     public void run() {
         // dummy implementation
         logger.debug("...Running now");
+    }
+
+    public void howToLook() {
+        logger.debug("so cute");
+    }
+
+    public void walkByFourLegs() {
+        logger.debug("so so");
     }
 }

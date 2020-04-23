@@ -23,7 +23,7 @@ import org.slf4j.LoggerFactory;
  * The object for cat(猫).
  * @author jflute
  */
-public class Cat extends Animal implements FastRunner {
+public class Cat extends Animal implements FastRunner, Tetrapod {
 
     // ===================================================================================
     //                                                                          Definition
@@ -62,5 +62,13 @@ public class Cat extends Animal implements FastRunner {
         if (hitPoint % 2 == 0) {
             super.downHitPoint();
         }
+    }
+
+    public void howToLook() {
+        logger.debug("so pretty");
+    }
+
+    public void walkByFourLegs() {
+        logger.debug("so fast");
     }
 }
