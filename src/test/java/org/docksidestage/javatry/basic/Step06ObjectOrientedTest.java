@@ -33,7 +33,7 @@ import org.docksidestage.unit.PlainTestCase;
  * Operate exercise as javadoc. If it's question style, write your answer before test execution. <br>
  * (javadocの通りにエクササイズを実施。質問形式の場合はテストを実行する前に考えて答えを書いてみましょう)
  * @author jflute
- * @author your_name_here
+ * @author kim sae young
  */
 public class Step06ObjectOrientedTest extends PlainTestCase {
 
@@ -66,12 +66,16 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
             throw new IllegalStateException("Short money: handedMoney=" + handedMoney);
         }
         --quantity;
-        salesProceeds = handedMoney;
+        //salesProceeds = handedMoney;
+        //salesProceedsは収益のことなので、TicketのPrice分だけを上がるべきなので
+        salesProceeds = salesProceeds == null ? handedMoney : salesProceeds + handedMoney;
 
         //
         // [ticket info]
         //
-        int displayPrice = quantity;
+        // int displayPrice = quantity;
+        // Ticketの値段はquantityではなくoneDayPriceである
+        int displayPrice = oneDayPrice;
         boolean alreadyIn = false;
 
         // other processes here...
@@ -82,21 +86,27 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         // [do in park now!!!]
         //
         if (alreadyIn) {
-            throw new IllegalStateException("Already in park by this ticket: displayPrice=" + quantity);
+            throw new IllegalStateException("Already in park by this ticket: displayPrice=" + displayPrice);
+            // throw new IllegalStateException("Already in park by this ticket: displayPrice=" + quantity);
         }
         alreadyIn = true;
 
         //
         // [final process]
         //
-        saveBuyingHistory(quantity, displayPrice, salesProceeds, alreadyIn);
+
+        //saveBuyingHistory(quantity, displayPrice, salesProceeds, alreadyIn);
+        //宣伝されている変数の位置が違う
+        saveBuyingHistory(quantity, salesProceeds, displayPrice, alreadyIn);
     }
 
     private void saveBuyingHistory(int quantity, Integer salesProceeds, int displayPrice, boolean alreadyIn) {
         if (alreadyIn) {
             // only logging here (normally e.g. DB insert)
-            showTicketBooth(displayPrice, salesProceeds);
-            showYourTicket(quantity, alreadyIn);
+            // showTicketBooth(displayPrice, salesProceeds);
+            // showYourTicket(quantity, alreadyIn);
+            showTicketBooth(quantity, salesProceeds);
+            showYourTicket(displayPrice, alreadyIn);
         }
     }
 
@@ -114,6 +124,12 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
     /**
      * Read (analyze) this code and compare with the previous test method, and think "what is object?". <br>
      * (このコードを読んで(分析して)、一つ前のテストメソッドと比べて、「オブジェクトとは何か？」を考えてみましょう)
+     */
+    /*
+        1 コードが短くなっている
+        2 変数名によっては、何をしているかを簡潔に読んでわかる
+        3 ロジックが分けられているので、わかりやすい
+        4 Objectごとに管理する情報がわけられているので管理がしやすい
      */
     public void test_objectOriented_aboutObject_usingObject() {
         //
@@ -198,9 +214,10 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         Dog dog = new Dog();
         BarkedSound sound = dog.bark();
         String sea = sound.getBarkWord();
-        log(sea); // your answer? => 
+        log(sea); // your answer? => wan
         int land = dog.getHitPoint();
-        log(land); // your answer? => 
+        log(land); // your answer? => 7
+        // Right
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
