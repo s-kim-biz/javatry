@@ -202,6 +202,7 @@ public class Step02IfForTest extends PlainTestCase {
         List<String> stageList = prepareStageList();
         List<String> lastOne = new ArrayList<>();
         String sea = null;
+        // TODO kim unused warning here by jflute (2020/04/23)
         Boolean b = false;
         stageList.forEach(stage -> {
             if (!lastOne.isEmpty() && lastOne.get(lastOne.size() - 1).contains("ga")) {
