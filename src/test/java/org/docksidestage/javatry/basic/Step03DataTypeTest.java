@@ -86,7 +86,9 @@ public class Step03DataTypeTest extends PlainTestCase {
             sea = 0;
         }
         log(sea); // your answer? => 127(x), 2(o)
-        // Todo how (byte) works
+        // TODO how (byte) works
+        // TODO DONE int,short,longでは最後の1byteが変換される
+        // TODO DONE double,float(254.2f)→32bitのint型に変換(254)->最後の1byteに変換(-2)
     }
 
     // ===================================================================================

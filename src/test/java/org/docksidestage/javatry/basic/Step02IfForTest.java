@@ -182,6 +182,8 @@ public class Step02IfForTest extends PlainTestCase {
         */
 
         // TODO [comment] OK です！ by subaru (2020/04/23)
+        // TODO DONE
+
         // Stream API 使わないバージョン
         for (String stage : stageList) {
             if (stage.contains("a"))
