@@ -15,11 +15,7 @@
  */
 package org.docksidestage.javatry.basic;
 
-import org.docksidestage.bizfw.basic.buyticket.OneDayTicket;
-import org.docksidestage.bizfw.basic.buyticket.TwoDayTicket;
-import org.docksidestage.bizfw.basic.buyticket.TicketBooth;
-import org.docksidestage.bizfw.basic.buyticket.Ticket;
-import org.docksidestage.bizfw.basic.buyticket.TicketBuyResult;
+import org.docksidestage.bizfw.basic.buyticket.*;
 import org.docksidestage.bizfw.basic.buyticket.TicketBooth.TicketShortMoneyException;
 import org.docksidestage.unit.PlainTestCase;
 
@@ -224,8 +220,31 @@ public class Step05ClassTest extends PlainTestCase {
      * (FourDayPassport (金額は22400) のチケットも買えるようにしましょう)
      */
     public void test_class_moreFix_wonder() {
+        TicketBooth b = new TicketBooth();
+        FourDayTicket fourDayTicket = b.buyFourDayPassportTicket(50000);
+
+        log(fourDayTicket.getDisplayPrice());
+
+        log(fourDayTicket.isAlreadyIn());
+        fourDayTicket.doInPark();
+        log(fourDayTicket.isAlreadyIn());
+        fourDayTicket.doInPark();
+        log(fourDayTicket.isAlreadyIn());
+        fourDayTicket.doInPark();
+        log(fourDayTicket.isAlreadyIn());
+        fourDayTicket.doInPark();
+        log(fourDayTicket.isAlreadyIn());
         // your confirmation code here
     }
+    /*
+        ただし、問題点としてここではTicketの種類が全部publicなのでどこでも呼べる。
+        しかし、本来ならばTicketBoothからしか発行できないようにすることが望ましい。
+        そのためには、
+        1 TicketBoothがTicket種類を継承し
+        2 Ticket種類別のコンストラクタをprotectedに
+        することで可能ではないかと思った。
+     */
+
 
     /**
      * Refactor if you want to fix (e.g. is it well-balanced name of method and variable?). <br>

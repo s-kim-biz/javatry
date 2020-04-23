@@ -28,6 +28,7 @@ public class TicketBooth {
     private static final int MAX_QUANTITY = 10;
     private static final int ONE_DAY_PRICE = 7400; // when 2019/06/15
     private static final int TWO_DAY_PRICE = 13200;
+    private static final int FOUR_DAY_PRICE = 22400;
 
     // ===================================================================================
     //                                                                           Attribute
@@ -76,6 +77,14 @@ public class TicketBooth {
         quantity -= 2;
         return new TicketBuyResult(handedMoney, TWO_DAY_PRICE);
     }
+
+    public FourDayTicket buyFourDayPassportTicket(int handedMoney) {
+        isPossibleToBuyPassport(quantity, handedMoney, FOUR_DAY_PRICE);
+        quantity -= 4;
+        addSalesProceeds(FOUR_DAY_PRICE);
+        return new FourDayTicket(FOUR_DAY_PRICE);
+    }
+
     private void isPossibleToBuyPassport(int quantity, int handedMoney, int price) {
         if (quantity <= 0) {
             throw new TicketSoldOutException("Sold out");

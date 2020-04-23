@@ -3,11 +3,12 @@ package org.docksidestage.bizfw.basic.buyticket;
 public class TwoDayTicket implements Ticket {
     private final int displayPrice;
     private int countPark;
+    private static final int COUNT = 2;
 
     public TwoDayTicket(int displayPrice) { this.displayPrice = displayPrice; }
 
     public void doInPark() {
-        if (!(countPark < 2)) {
+        if (this.isAlreadyIn()) {
             throw new IllegalStateException("Already in park by this ticket: displayedPrice=" + displayPrice);
         }
         ++countPark;
@@ -18,6 +19,6 @@ public class TwoDayTicket implements Ticket {
     }
 
     public boolean isAlreadyIn() {
-        return !(countPark < 2);
+        return !(countPark < COUNT);
     }
 }
