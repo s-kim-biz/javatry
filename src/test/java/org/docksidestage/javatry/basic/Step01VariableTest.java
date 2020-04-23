@@ -49,6 +49,16 @@ public class Step01VariableTest extends PlainTestCase {
         sea = sea + land + piari + ":" + dstore;
         log(sea); // your answer? => mystic8nullmai
         // TODO [comment] こちらは print メソッドの document なので、正しくは StringBuilder の document を見るべきです by subaru (2020/04/22)
+
+        // ここで、String1 + String2であれば動作手順として
+        // 1 StringBuilderが呼ばれる
+        // 2 StringBuilder temp = new StringBuilder(String1)みたいなものが呼ばれる
+        // 3 temp = temp.append(String2)になる
+        // #ここでString2 == nullであれば、候補としてStringBufferとStringがあるがここではStringと宣伝しているものを使うので
+        // 4 temp = temp.append("null")
+        // return temp.toString()
+        // という理解で大丈夫でしょうか
+
         // https://docs.oracle.com/javase/8/docs/api/java/lang/StringBuilder.html
         // + オペレーターを呼び出す時、内部では StringBuilder が呼び出されています。
         // そして StringBuilder の append メソッドの Document には 引数が null だった時の挙動が明記されています。
@@ -75,6 +85,7 @@ public class Step01VariableTest extends PlainTestCase {
         land = land + "'s dreams";
         log(sea); // your answer? => oneman
         // TODO [comment] とても丁寧！いいですね。 by subaru (2020/04/22)
+        // ありがとうございます
         // Pass by value と Pass by referenceを聞く
         // Java is strictly pass by value
         // ただし、Objectをpassする際にそのReference(Address in heap)をpass by valueする
@@ -182,6 +193,9 @@ public class Step01VariableTest extends PlainTestCase {
         log(sea); // your answer? => harbor416
         // Right
         // TODO 回答としてはあってるけど、String もクラスであるため reference type だね。 by subaru (2020/04/22)
+        // 確かにその通りです。すいません。ただ、immutableなクラスであるので
+        // 値がPrimitive typeのように値自体がコピーされる意味（実際は、Heapに新たな参照できる値を作る）として捉えていました。
+
         // String = Primitive type
         // StringBuilder = class
         // "a" + "b" => StringBuilderに変換される
@@ -233,12 +247,15 @@ public class Step01VariableTest extends PlainTestCase {
      * </pre>
      */
     // TODO この書き方だと sea と land はインスタンス変数です。 by subaru (2020/04/22)
+    // 修正しました
+
     // test_variable_writing メソッドのローカル変数として書き直してみよう！
-    String sea = "mystic";
-    Integer land = null;
     int piari;
 
     public void test_variable_writing() {
+        String sea = "mystic";
+        Integer land = null;
+
         log(sea + " , " + land + " , " + piari);
         // Right
     }

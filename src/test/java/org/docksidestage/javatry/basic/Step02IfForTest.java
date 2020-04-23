@@ -170,12 +170,23 @@ public class Step02IfForTest extends PlainTestCase {
         List<String> stageList = prepareStageList();
         List<String> resultList = new ArrayList<>();
         // TODO Stream APIなしでやってみてください winkichanwi
+        /*
         stageList.forEach(stage -> {
             if (stage.contains("a"))
                 resultList.add(stage);
         });
 
         for (String result : resultList) {
+            log(result);
+        }
+        */
+
+        // Stream API 使わないバージョン
+        for(String stage : stageList) {
+            if(stage.contains("a")) resultList.add(stage);
+        }
+
+        for(String result : resultList) {
             log(result);
         }
     }
