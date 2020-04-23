@@ -236,6 +236,9 @@ public class Step05ClassTest extends PlainTestCase {
         log(fourDayTicket.isAlreadyIn());
         // your confirmation code here
     }
+    // TODO kim [質問] これはどういうことだろうか？ by subaru (2020/04/23)
+    // ごめんなさい、少し意図がわからないのだけど、もし余裕があれば詳しく書いてみてもらえませんか？
+    // 可能ならブランチ分けるなどして少し実装してみましょう！
     /*
         ただし、問題点としてここではTicketの種類が全部publicなのでどこでも呼べる。
         しかし、本来ならばTicketBoothからしか発行できないようにすることが望ましい。
@@ -245,7 +248,6 @@ public class Step05ClassTest extends PlainTestCase {
         することで可能ではないかと思った。
      */
 
-
     /**
      * Refactor if you want to fix (e.g. is it well-balanced name of method and variable?). <br>
      * (その他、気になるところがあったらリファクタリングしてみましょう (例えば、バランスの良いメソッド名や変数名になっていますか？))
@@ -253,6 +255,17 @@ public class Step05ClassTest extends PlainTestCase {
     public void test_class_moreFix_yourRefactoring() {
         // write confirmation code here
     }
+    // TODO [comment] いい質問です。 by subaru (2020/04/23)
+    // 1 まずは単純に単語を取捨選択すると良いと思います。
+    // 今回のケースだと isPossibleToBuyPassport -> isPassportAvailable など
+    // 単語を減らしたりすることで意味が通じるならそうするのもありです（もちろん減らしすぎて意味が通じないということにならないように注意です）。
+    //
+    // 2 については小文字や大文字で始めるかを変数か関数かによって変えることは通常やりません。
+    // java だと基本的にクラスのメソッドもフィールドも Camel Case で書く場合が多いですね。
+    // 区別するにはメソッドの名前の付け方など工夫すると良いと思います。
+    // 例えば
+    // フィールド: 物の名前（ticket, price など）
+    // メソッド: 動詞からはじめるなど（doInPark, getDisplayPrice など）
     /*
         1 Refactoringで"〜することが可能であるか"を意味するBoolean変数名をどうするばいいか
             これまでは、isPossibleTo~のようにしていたが名前が長すぎると感じている。
