@@ -39,6 +39,10 @@ public class Step07ExceptionTest extends PlainTestCase {
         IllegalStateException exp = new IllegalStateException("mystic");
         String sea = exp.getMessage();
         log(sea); // your answer? => mystic
+
+        // getMessageはThrowableクラスに宣伝されているもの
+        // IllegalStateException extends RuntimeException extends Exception extends Throwable
+        // getMessage()の戻り値はThrowableインスタンスの詳細エラーメッセージ
     }
 
     // ===================================================================================
@@ -51,28 +55,33 @@ public class Step07ExceptionTest extends PlainTestCase {
     public void test_exception_hierarchy_Runtime_instanceof_RuntimeException() {
         Object exp = new IllegalStateException("mystic");
         boolean sea = exp instanceof RuntimeException;
-        log(sea); // your answer? => 
+        log(sea); // your answer? => true
+        // Right
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_exception_hierarchy_Runtime_instanceof_Exception() {
         Object exp = new IllegalStateException("mystic");
         boolean sea = exp instanceof Exception;
-        log(sea); // your answer? => 
+        log(sea); // your answer? => true
+        // Right
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_exception_hierarchy_Runtime_instanceof_Error() {
         Object exp = new IllegalStateException("mystic");
         boolean sea = exp instanceof Error;
-        log(sea); // your answer? => 
+        log(sea); // your answer? => false
+        // Right
+        // Error extends Throwable
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_exception_hierarchy_Runtime_instanceof_Throwable() {
         Object exp = new IllegalStateException("mystic");
         boolean sea = exp instanceof Throwable;
-        log(sea); // your answer? => 
+        log(sea); // your answer? => true
+        // Right
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
