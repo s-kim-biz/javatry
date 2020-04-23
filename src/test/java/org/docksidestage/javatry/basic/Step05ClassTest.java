@@ -255,7 +255,7 @@ public class Step05ClassTest extends PlainTestCase {
     public void test_class_moreFix_yourRefactoring() {
         // write confirmation code here
     }
-    // TODO [comment] いい質問です。 by subaru (2020/04/23)
+    // TODO DONE [comment] いい質問です。 by subaru (2020/04/23)
     // 1 まずは単純に単語を取捨選択すると良いと思います。
     // 今回のケースだと isPossibleToBuyPassport -> isPassportAvailable など
     // 単語を減らしたりすることで意味が通じるならそうするのもありです（もちろん減らしすぎて意味が通じないということにならないように注意です）。

@@ -181,8 +181,7 @@ public class Step02IfForTest extends PlainTestCase {
         }
         */
 
-        // TODO [comment] OK です！ by subaru (2020/04/23)
-        // TODO DONE
+        // TODO DONE [comment] OK です！ by subaru (2020/04/23)
 
         // Stream API 使わないバージョン
         for (String stage : stageList) {
@@ -206,7 +205,7 @@ public class Step02IfForTest extends PlainTestCase {
         List<String> stageList = prepareStageList();
         List<String> lastOne = new ArrayList<>();
         String sea = null;
-        // TODO kim unused warning here by jflute (2020/04/23)
+        // TODO DONE kim unused warning here by jflute (2020/04/23)
         stageList.forEach(stage -> {
             if (!lastOne.isEmpty() && lastOne.get(lastOne.size() - 1).contains("ga")) {
                 return;

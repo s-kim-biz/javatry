@@ -58,14 +58,12 @@ public class Step01VariableTest extends PlainTestCase {
         // 4 temp = temp.append("null")
         // return temp.toString()
         // という理解で大丈夫でしょうか
-        // TODO [comment] 概ね理解としてはあっています。 by subaru (2020/04/23)
+        // TODO DONE [comment] 概ね理解としてはあっています。 by subaru (2020/04/23)
         // 少し気になるのは 4 で、
         // temp = temp.append(null)
         // だね。null -> "null" になるのはあくまで append メソッドの内部での話なので。
         // + operator がどのような処理をしているかは、この辺りの解説が分かりやすいと思います。
         // https://stackoverflow.com/questions/4648607/stringbuilder-stringbuffer-vs-operator
-
-        // TODO DONE
 
         // https://docs.oracle.com/javase/8/docs/api/java/lang/StringBuilder.html
         // + オペレーターを呼び出す時、内部では StringBuilder が呼び出されています。
@@ -92,7 +90,7 @@ public class Step01VariableTest extends PlainTestCase {
         sea = land;
         land = land + "'s dreams";
         log(sea); // your answer? => oneman
-        // TODO [comment] とても丁寧！いいですね。 by subaru (2020/04/22)
+        // TODO DONE [comment] とても丁寧！いいですね。 by subaru (2020/04/22)
         // ありがとうございます
         // Pass by value と Pass by referenceを聞く
         // Java is strictly pass by value
@@ -203,8 +201,7 @@ public class Step01VariableTest extends PlainTestCase {
         // TODO 回答としてはあってるけど、String もクラスであるため reference type だね。 by subaru (2020/04/22)
         // 確かにその通りです。すいません。ただ、immutableなクラスであるので
         // 値がPrimitive typeのように値自体がコピーされる意味（実際は、Heapに新たな参照できる値を作る）として捉えていました。
-        // TODO [comment] Good!! by subaru (2020/04/23)
-        // TODO DONE
+        // TODO DONE [comment] Good!! by subaru (2020/04/23)
 
         // String = Primitive type
         // StringBuilder = class
@@ -298,8 +295,7 @@ public class Step01VariableTest extends PlainTestCase {
         // write your code here
         int i = 1;
         int j = 10;
-        // TODO kim unused warning here by jflute (2020/04/23)
-        // TODO DONE
+        // TODO DONE kim unused warning here by jflute (2020/04/23)
         String str = "www";
         log(str + i + j + " , " + str + (i + j));
     }

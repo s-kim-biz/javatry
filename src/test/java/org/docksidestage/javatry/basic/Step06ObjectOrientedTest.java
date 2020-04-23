@@ -225,9 +225,18 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         Animal animal = new Dog();
         BarkedSound sound = animal.bark();
         String sea = sound.getBarkWord();
-        log(sea); // your answer? => 
+        log(sea); // your answer? => wan
         int land = animal.getHitPoint();
-        log(land); // your answer? => 
+        log(land); // your answer? => 7
+        // Right
+        // これはPolymorphismに対する問題であると考えられる。
+        // 親クラスのTypeで宣伝した変数が子クラスのインスタンスを持っている。
+        // この場合は、子クラスが独自にもつメソッドには参照できない
+        // ただし、子クラスの変数はインスタンスのあるところをさしているので型は親であっても子クラスと親クラス両方にあるメソッドは呼べる
+
+        // TODO Polymorphismの確かな動作原理
+        // C++であるとvtableのようなポインタテーブルを用いてするといった流れがあったのですが。。。
+        // JAVAでのPolymorphismが動作する理由、原理について知りたいです。
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
@@ -235,9 +244,10 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         Animal animal = createAnyAnimal();
         BarkedSound sound = animal.bark();
         String sea = sound.getBarkWord();
-        log(sea); // your answer? => 
+        log(sea); // your answer? => wan
         int land = animal.getHitPoint();
-        log(land); // your answer? => 
+        log(land); // your answer? => 7
+        // Right
     }
 
     private Animal createAnyAnimal() {
@@ -248,14 +258,15 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
     public void test_objectOriented_polymorphism_4th_toMethod() {
         Dog dog = new Dog();
         doAnimalSeaLand_for_4th(dog);
+        // Right
     }
 
     private void doAnimalSeaLand_for_4th(Animal animal) {
         BarkedSound sound = animal.bark();
         String sea = sound.getBarkWord();
-        log(sea); // your answer? => 
+        log(sea); // your answer? => wan
         int land = animal.getHitPoint();
-        log(land); // your answer? => 
+        log(land); // your answer? => 7
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
@@ -263,9 +274,12 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         Animal animal = new Cat();
         BarkedSound sound = animal.bark();
         String sea = sound.getBarkWord();
-        log(sea); // your answer? => 
+        log(sea); // your answer? => nya-
         int land = animal.getHitPoint();
-        log(land); // your answer? => 
+        log(land); // your answer? => 5
+        // Right
+        // TODO Javaではインスタンスにあるところに、メッセジーを送るみたいな話を聞いていますが
+        // その意味が何なのかが具体的にどうなのかが勉強しないといけない
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
@@ -273,9 +287,31 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         Animal animal = new Zombie();
         BarkedSound sound = animal.bark();
         String sea = sound.getBarkWord();
-        log(sea); // your answer? => 
+        log(sea); // your answer? => uooo
         int land = animal.getHitPoint();
-        log(land); // your answer? => 
+        log(land); // your answer? => -1
+        // Right
+        // まず、継承している場合継承している場合、一番親の方からコンストラクターを呼ぶべき
+        // なので、指定がなければ親の方のデフォルトコンストラクターが呼ばれ続けて最後に自分のコンストラクタが呼ばれる
+        // ただし、疑問が二つある
+        // 1 コンストラクタの順番と関数の呼び出しについて
+        // Animal animal = new Zombie(); からは
+        // Animal()が呼ばれて次にZombie()が呼ばれると思った。
+        // このときに、public Animal() {
+        //        hitPoint = getInitialHitPoint();
+        //    }
+        // であり、getInitialHitPoint()はZombieの方でも宣伝されている。
+        // ここで、疑問だったのは
+        // "親のコンストラクタを呼び出している途中なのに、そこに使われた関数がオーバーライドされているものであれば、
+        // オーバーライドされているものを呼べるのはなぜか"（親をコンストラクタしているならば関数も親のものだけ使うことが正しいかもと思った）
+        // 2 呼び出している関数はオーバーライドされていないが、その中で使われる関数がオーバーライドされている時の呼び出しについて
+        //     protected void prepareAbdominalMuscle() {
+        //        logger.debug("...Using my abdominal muscle"); // dummy implementation
+        //        downHitPoint();
+        //    }
+        // を呼ぶときに、Zombieクラスはこれがオーバーライドされていないのでこのままスーパークラスのものを呼ぶがその中にある
+        // downHitPoint()はオーバーライド版がある。この場合に、なぜdownHitPoint()だけはオーバーライド版が呼べるか
+        // Polymorphismの具体的な動作原理を知ることが大事だと思った。
     }
 
     // ===================================================================================
@@ -285,18 +321,21 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
     public void test_objectOriented_polymorphism_interface_dispatch() {
         Loudable loudable = new Zombie();
         String sea = loudable.soundLoudly();
-        log(sea); // your answer? => 
+        log(sea); // your answer? => uooo
         String land = ((Zombie) loudable).bark().getBarkWord();
-        log(land); // your answer? => 
+        log(land); // your answer? => uooo
+        // Right
+        // 一般的には親クラスに子インスタンスを割り当てる
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_objectOriented_polymorphism_interface_hierarchy() {
         Loudable loudable = new AlarmClock();
         String sea = loudable.soundLoudly();
-        log(sea); // your answer? => 
+        log(sea); // your answer? => jiri jiri jiri---
         boolean land = loudable instanceof Animal;
-        log(land); // your answer? => 
+        log(land); // your answer? => false
+        // Right
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
@@ -304,9 +343,10 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         Animal seaAnimal = new Cat();
         Animal landAnimal = new Zombie();
         boolean sea = seaAnimal instanceof FastRunner;
-        log(sea); // your answer? => 
+        log(sea); // your answer? => true
         boolean land = landAnimal instanceof FastRunner;
-        log(land); // your answer? => 
+        log(land); // your answer? => false
+        // Right
     }
 
     /**
@@ -314,7 +354,11 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
      * (DogもFastRunnerインターフェースをimplementsしてみましょう (実装はCatと同じで))
      */
     public void test_objectOriented_polymorphism_interface_runnerImpl() {
-        // your confirmation code here
+        FastRunner dog = new Dog();
+        FastRunner cat = new Cat();
+
+        dog.run();
+        cat.run();
     }
 
     // ===================================================================================
