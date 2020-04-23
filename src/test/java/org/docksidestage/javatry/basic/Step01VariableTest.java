@@ -260,6 +260,7 @@ public class Step01VariableTest extends PlainTestCase {
         // write your code here
         int i = 1;
         int j = 10;
+        // TODO kim unused warning here by jflute (2020/04/23)
         int k = 100;
         String str = "www";
         log(str + i + j + " , " + str + (i + j));
