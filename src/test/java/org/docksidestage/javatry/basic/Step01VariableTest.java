@@ -58,6 +58,12 @@ public class Step01VariableTest extends PlainTestCase {
         // 4 temp = temp.append("null")
         // return temp.toString()
         // という理解で大丈夫でしょうか
+        // TODO [comment] 概ね理解としてはあっています。 by subaru (2020/04/23)
+        // 少し気になるのは 4 で、
+        // temp = temp.append(null)
+        // だね。null -> "null" になるのはあくまで append メソッドの内部での話なので。
+        // + operator がどのような処理をしているかは、この辺りの解説が分かりやすいと思います。
+        // https://stackoverflow.com/questions/4648607/stringbuilder-stringbuffer-vs-operator
 
         // https://docs.oracle.com/javase/8/docs/api/java/lang/StringBuilder.html
         // + オペレーターを呼び出す時、内部では StringBuilder が呼び出されています。
@@ -195,6 +201,7 @@ public class Step01VariableTest extends PlainTestCase {
         // TODO 回答としてはあってるけど、String もクラスであるため reference type だね。 by subaru (2020/04/22)
         // 確かにその通りです。すいません。ただ、immutableなクラスであるので
         // 値がPrimitive typeのように値自体がコピーされる意味（実際は、Heapに新たな参照できる値を作る）として捉えていました。
+        // TODO [comment] Good!! by subaru (2020/04/23)
 
         // String = Primitive type
         // StringBuilder = class
@@ -249,6 +256,9 @@ public class Step01VariableTest extends PlainTestCase {
     // TODO この書き方だと sea と land はインスタンス変数です。 by subaru (2020/04/22)
     // 修正しました
 
+    // TODO kim いいですね、もう少しです by subaru (2020/04/23)
+    // 少し発展だけど piari のアクセスレベルまで設定できるとより良いです。
+    // public にすべきか、private にすべきかなど。
     // test_variable_writing メソッドのローカル変数として書き直してみよう！
     int piari;
 
