@@ -248,6 +248,18 @@ public class Step05ClassTest extends PlainTestCase {
         することで可能ではないかと思った。
      */
 
+    /*
+        TicketBoothだけがTicketを作れないようにしないといけない。
+        そのためには、
+        1 . TicketBooth extends Ticket
+        2 . Ticket {
+            Protected Ticket() {
+                ....
+            }
+        }
+        みたいにした方がいいとは思いました。
+     */
+
     /**
      * Refactor if you want to fix (e.g. is it well-balanced name of method and variable?). <br>
      * (その他、気になるところがあったらリファクタリングしてみましょう (例えば、バランスの良いメソッド名や変数名になっていますか？))
