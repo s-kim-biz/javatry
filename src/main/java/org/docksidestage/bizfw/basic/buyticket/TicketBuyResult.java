@@ -25,7 +25,7 @@ public class TicketBuyResult {
 
     public int getChange() { return change; }
 
-    public Ticket getTicket() {
-        return new Ticket(displayPrice);
+    public TwoDayTicket getTicket() {
+        return new TwoDayTicket(displayPrice);
     }
 }

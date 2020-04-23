@@ -15,7 +15,7 @@
  */
 package org.docksidestage.bizfw.basic.buyticket;
 
-import org.docksidestage.bizfw.basic.buyticket.Ticket;
+import javax.print.DocFlavor;
 
 /**
  * @author jflute
@@ -50,10 +50,18 @@ public class TicketBooth {
         addSalesProceeds(ONE_DAY_PRICE);
     }
 
-    public Ticket buyOneDayPassportTicket(int handedMoney) {
+    public OneDayTicket buyOneDayPassportTicket(int handedMoney) {
         isPossibleToBuyPassport(quantity, handedMoney, ONE_DAY_PRICE);
         --quantity;
-        return new Ticket(ONE_DAY_PRICE);
+        addSalesProceeds(ONE_DAY_PRICE);
+        return new OneDayTicket(ONE_DAY_PRICE);
+    }
+
+    public TwoDayTicket buyTwoDayPassportTicket(int handedMoney) {
+        isPossibleToBuyPassport(quantity, handedMoney, TWO_DAY_PRICE);
+        quantity -= 2;
+        addSalesProceeds(TWO_DAY_PRICE);
+        return new TwoDayTicket(TWO_DAY_PRICE);
     }
 
     public Integer buyTwoDayPassport(int handedMoney) {
@@ -63,7 +71,7 @@ public class TicketBooth {
         return handedMoney - TWO_DAY_PRICE;
     }
 
-    public TicketBuyResult buyTwoDayPassportTickets(int handedMoney) {
+    public TicketBuyResult buyTwoDayPassportResult(int handedMoney) {
         isPossibleToBuyPassport(quantity, handedMoney, TWO_DAY_PRICE);
         quantity -= 2;
         return new TicketBuyResult(handedMoney, TWO_DAY_PRICE);
@@ -112,5 +120,17 @@ public class TicketBooth {
 
     public Integer getSalesProceeds() {
         return salesProceeds;
+    }
+
+    public static String getTicketInfo(Ticket t) {
+        if(t.getDisplayPrice() == ONE_DAY_PRICE) {
+            return "one-day price ticket";
+        }
+        else if(t.getDisplayPrice() == TWO_DAY_PRICE) {
+            return "two-days price ticket";
+        }
+        else {
+            return "uncertain ticket";
+        }
     }
 }
