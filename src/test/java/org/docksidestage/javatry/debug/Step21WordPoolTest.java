@@ -34,6 +34,8 @@ public class Step21WordPoolTest extends PlainTestCase {
         assertEquals("荼", result.get(2).getWord());
         assertEquals("日本語", result.get(3).getLanguage().name);
         assertEquals("昴", result.get(3).getWord());
+
+        // Right
     }
 
     public void test_find() {
@@ -46,6 +48,8 @@ public class Step21WordPoolTest extends PlainTestCase {
         // assert
         assertEquals("日本語", found.getLanguage().name);
         assertEquals("柿", found.getWord());
+
+        // Right
     }
 
     public void test_create() {
@@ -57,12 +61,17 @@ public class Step21WordPoolTest extends PlainTestCase {
 
         // assert
         assertTrue(pool.getWords().contains(actual.getValue()));
+
+        // False
+        // createからfindのところに入っている値が
+        // find(id)ではなく、find(word)になるべき
     }
 
     public void test_findId() {
         // arrange
         WordPool pool = new WordPool();
-        List<String> words = Arrays.asList("私", "柿", "荼", "昂");
+        // List<String> words = Arrays.asList("私", "柿", "荼", "昂");
+        List<String> words = Arrays.asList("私", "柿", "荼", "昴");
 
         for (int i = 0; i < words.size(); i++) {
             // act
@@ -71,7 +80,8 @@ public class Step21WordPoolTest extends PlainTestCase {
             // assert
             assertEquals(i + 1, actual.intValue());
         }
-
+        // 文字が違うらしい
+        // wordsの中の単語が登録されているものと違う問題
     }
 
     public void test_update() {
@@ -80,12 +90,18 @@ public class Step21WordPoolTest extends PlainTestCase {
         Map.Entry<Long, Word> created = pool.create(new Language("日本語"), "つくえ");
 
         // act
-        Word result = pool.update("日本語", "つくえ", "ぼうし");
+        //Word result = pool.update("日本語", "つくえ", "ぼうし");
+        Word result = pool.update("日本語", "ぼうし", "つくえ");
 
         // assert
         assertEquals("ぼうし", result.getWord());
         assertEquals("日本語", result.getLanguage().name);
         assertEquals(created.getKey(), pool.findId("ぼうし"));
+
+        // 答え：false
+
+        // updateの順番が逆
+        // 引数の名前を[word1,word2]ではなく、[updateWord,removeWord]にした方がわかりやすい
     }
 
     public void test_replace() {
@@ -95,12 +111,18 @@ public class Step21WordPoolTest extends PlainTestCase {
 
         // act
         String result = pool.replace(created.getKey(), "くえ", "ばき");
+        pool.update(created.getKey(), new Word(created.getValue().getLanguage(), result));
 
         // assert
         Word actual = pool.find(result);
         assertEquals("つばき", actual.getWord());
         assertEquals("日本語", actual.getLanguage().name);
         assertEquals(created.getKey(), pool.findId("つばき"));
+
+        // 答え:false
+
+        // 理由:replaceではkeyを用いてWordpoolの中にあるデータを取り出してそれを文字を変えているだけ
+        // Wordpoolを直接変更させる動きはしていない
     }
 
     public void test_getLanguages() {
@@ -110,9 +132,15 @@ public class Step21WordPoolTest extends PlainTestCase {
 
         List<Language> languages = pool.getLanguages();
 
+        languages.forEach(language -> log(language.getCountries()));
+
         assertEquals(expected.name, languages.get(0).name);
         assertEquals(expected.description, languages.get(0).description);
         assertEquals(expected.countries, languages.get(0).countries);
         assertEquals(expected.rank, languages.get(0).rank);
+
+        // 答え：false
+
+        // 理由：hasLanguageでcountiresの値を変更している
     }
 }

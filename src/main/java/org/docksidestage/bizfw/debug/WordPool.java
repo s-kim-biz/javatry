@@ -21,7 +21,7 @@ public class WordPool {
     public Map.Entry<Long, Word> create(Language language, String word) {
         Long id = incrementId();
         wordMap.put(id, new Word(language, word));
-        return new AbstractMap.SimpleEntry<>(id, find(id));
+        return new AbstractMap.SimpleEntry<>(id, find(word));
     }
 
     public Word find(String word) {
