@@ -29,6 +29,14 @@ public class Step23SorterTest extends PlainTestCase {
             assertTrue(rank < language.rank);
             rank = language.rank;
         }
+
+        //答え:false
+
+        //理由:LanguagePoolのコンストラクタを見ると値が0として初期化されていることと
+        //LanguagePoolに登録するもののなかで、rankを設定していない（default Value = 0）。
+        //なので、rank=0になるものが最初に登場するのでエラー
+
+        //rankが初期化バリューとして1になるように設定。
     }
 
     public void test_wordSorter() {
@@ -47,6 +55,16 @@ public class Step23SorterTest extends PlainTestCase {
             Assert.assertEquals(expected.get(i).getLanguage().name, result.get(i).getLanguage().name);
             Assert.assertEquals(expected.get(i).getWord(), result.get(i).getWord());
         }
+
+        //答え:false
+        //理由:public List<Word> sort(List<Word> list)はlistをsortする関数にも関わらず
+        //中身ではwordSorterが持っているwordPoolの中身を整理している。
+        //そのため、listを入れる必要あり
+
+        // また、それぞれの　BubbleSort,QucikSorter,SelectionSorterのsort(List<Word> wordList)が動作するかも確認すべき
+        // SelectionSorter.sort(List<Word> wordList)に問題がある
+        // SelectionSorter.sort(List<Word> wordList)では比較する対象を
+        // 基準となるmと進行するjのWordを比較すべきであるが実装はiとjを比較しているのでエラー
     }
 
     public void test_wordPoolSorter() {
@@ -63,5 +81,14 @@ public class Step23SorterTest extends PlainTestCase {
             Assert.assertEquals(expected.get(i).getLanguage().name, result.get(i).getLanguage().name);
             Assert.assertEquals(expected.get(i).getWord(), result.get(i).getWord());
         }
+
+        //答え:false
+        //理由:
+        // 1. そもそもnew WordPool()からはgetJapanese関数により、意図しなかった(?)5番目の変数がMapに登録される。
+        // ->それを消せばできるはず
+        // 2. QuickSorterに問題がありそう
+        // QuickSorterの生成時にsortする配列が代入されていなかった。
+
+        // できた！
     }
 }

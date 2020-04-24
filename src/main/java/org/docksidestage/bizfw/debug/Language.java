@@ -7,7 +7,7 @@ public class Language {
     public String name;
     public String description = "";
     public int countries = 0;
-    public int rank;
+    public int rank = 1;
 
     public Language(String name) {
         this.name = name;
