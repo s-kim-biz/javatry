@@ -33,6 +33,7 @@ public class TicketBooth {
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
+    // TODO kim MAX_QUANTITYはoneDayPassportやtwoDayPassportを共通しているのでしょうか？現実的にどんユースケースでしょうか？ by winkichanwi
     private int quantity = MAX_QUANTITY;
     private Integer salesProceeds;
 
@@ -80,6 +81,7 @@ public class TicketBooth {
         return new TicketBuyResult(handedMoney, TWO_DAY_PRICE);
     }
 
+    // TODO kim 宿題です、こちらもTicketBuyResultを返すように修正してみましょう by winkichanwi
     public FourDayTicket buyFourDayPassportTicket(int handedMoney) {
         isPossibleToBuyPassport(quantity, handedMoney, FOUR_DAY_PRICE);
         quantity -= 4;
