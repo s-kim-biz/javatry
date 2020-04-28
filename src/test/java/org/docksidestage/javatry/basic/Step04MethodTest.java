@@ -171,13 +171,14 @@ public class Step04MethodTest extends PlainTestCase {
 
     // write methods here
     private String replaceAtoB(String str) {
-        return str.replace('A','B');
+        return str.replace('A', 'B');
     }
 
     private String replaceCtoB(String str) {
         StringBuilder sb = new StringBuilder(str);
-        for(int i = 0; i < str.length(); ++i) {
-            if(sb.charAt(i) == 'C') sb.setCharAt(i, 'B');
+        for (int i = 0; i < str.length(); ++i) {
+            if (sb.charAt(i) == 'C')
+                sb.setCharAt(i, 'B');
         }
         return sb.toString();
     }
