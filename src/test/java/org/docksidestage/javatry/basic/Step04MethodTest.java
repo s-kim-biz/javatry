@@ -183,7 +183,7 @@ public class Step04MethodTest extends PlainTestCase {
         return sb.toString();
     }
 
-    // TODO DONE 引数の名前は再検討してみましょう winkichanwi
+    // DONE 引数の名前は再検討してみましょう winkichanwi
     private String addPrefix(String prefix, String suffix) {
         return prefix + ":" + suffix;
     }
