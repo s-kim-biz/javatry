@@ -110,6 +110,7 @@ public class Step07ExceptionTest extends PlainTestCase {
             log("cannot get canonical path : " + e.getMessage());
         };
         // IOException extends Exception extends Throwable extends Object
+        // get project path
     }
 
     // ===================================================================================
@@ -130,9 +131,15 @@ public class Step07ExceptionTest extends PlainTestCase {
             Throwable cause = e.getCause();
             sea = cause.getMessage();
             land = cause.getClass().getSimpleName();
-            log(sea); // your answer? => 
-            log(land); // your answer? => 
-            log(e); // your answer? => 
+            log(sea); // your answer? => Failed to call the third help method:  -1
+            // right
+            log(land); // your answer? => Throwable
+            // wrong
+            // IllegalArgumentException
+            log(e); // your answer? => Failed to call the second help method:  -1
+            // wrong
+            // java.lang.IllegalStateException: Failed to call the second help method: -1 and
+            // stack trace
         }
     }
 
@@ -177,9 +184,9 @@ public class Step07ExceptionTest extends PlainTestCase {
             // _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
             // What happens? Write situation and cause here. (何が起きた？状況と原因をここに書いてみましょう)
             // - - - - - - - - - -
-            //
-            //
-            //
+            // org.docksidestage.bizfw.basic.screw.SpecialScrewManufacturer$SpecialScrewCannotMakeBySpecException: The kawaii face is not useful to make screw: ScrewSpec:{\(^_^)/}
+            // 呼ばれた順番に下から現れると思う
+            // エラーの原因は笑顔のものが入っていたこと。
             // _/_/_/_/_/_/_/_/_/_/
         }
     }
