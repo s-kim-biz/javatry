@@ -53,6 +53,12 @@ public class Step08Java8FunctionTest extends PlainTestCase {
         log("...Executing named class callback(!?)");
         helpCallbackConsumer(new St8BasicConsumer(title));
 
+        // 関数型インタフェースはクラスが継承することも可能であり、その時には関数型インタフェースのの関数をOverrideしないといけない
+        // answer
+        // broadway
+        // dockside: over
+        // hangar
+
         log("...Executing anonymous class callback");
         helpCallbackConsumer(new Consumer<String>() {
             public void accept(String stage) {
@@ -60,15 +66,31 @@ public class Step08Java8FunctionTest extends PlainTestCase {
             }
         });
 
+        // anonymous classでも可能
+        // answer
+        // broadway
+        // dockside: over
+        // hangar
+
         log("...Executing lambda block style callback");
         helpCallbackConsumer(stage -> {
             log(stage + ": " + title);
         });
 
+        // ラムダ式はanonymous classで生成のところと関数のシグネチャー部分がなくなった感じ
+        // ラムダになる推測して関数をOverrideするので抽象メソッドがたった一つだけでないといけない
+        // answer
+        // broadway
+        // dockside: over
+        // hangar
+
         log("...Executing lambda expression style callback");
         helpCallbackConsumer(stage -> log(stage + ": " + title));
 
-        // your answer? => 
+        // answer
+        // broadway
+        // dockside: over
+        // hangar
 
         // cannot reassign because it is used at callback process
         //title = "wave";
@@ -84,7 +106,12 @@ public class Step08Java8FunctionTest extends PlainTestCase {
             log(stage);
         });
         log("lost river");
-        // your answer? => 
+        // your answer? =>
+        // harbor
+        // broadway
+        // dockside
+        // hangar
+        // lost river
     }
 
     private class St8BasicConsumer implements Consumer<String> {
@@ -116,7 +143,8 @@ public class Step08Java8FunctionTest extends PlainTestCase {
         String sea = helpCallbackFunction(number -> {
             return label + ": " + number;
         });
-        log(sea); // your answer? => 
+        log(sea); // your answer? => number: 7
+        // right
     }
 
     private String helpCallbackFunction(Function<Integer, String> oneArgLambda) {
