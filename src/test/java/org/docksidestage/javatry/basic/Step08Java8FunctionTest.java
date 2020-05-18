@@ -215,7 +215,9 @@ public class Step08Java8FunctionTest extends PlainTestCase {
             St8Member member = optMember.get();
             log(member.getMemberId(), member.getMemberName());
         }
-        // your answer? => 
+        // your answer? => same
+        // Optionalはあるデータが中にあるかもないかも知らない時に宣言して使うと良い
+        // まるで量子みたいなもの
     }
 
     /**
