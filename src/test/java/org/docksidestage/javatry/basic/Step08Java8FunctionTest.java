@@ -177,11 +177,20 @@ public class Step08Java8FunctionTest extends PlainTestCase {
             }
         });
 
+        // answer
+        // broadway
+
         helpCallbackSupplier(() -> { // land
             return "dockside";
         });
 
+        // answer
+        // dockside
+
         helpCallbackSupplier(() -> "hangar"); // piari
+
+        // answer
+        // hangar
     }
 
     private void helpCallbackSupplier(Supplier<String> oneArgLambda) {
