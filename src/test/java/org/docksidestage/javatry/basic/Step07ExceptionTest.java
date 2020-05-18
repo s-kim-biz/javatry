@@ -214,6 +214,7 @@ public class Step07ExceptionTest extends PlainTestCase {
      * Fix terrible (YABAI in Japanese) exception handling. (you can modify exception class) <br>
      * (やばい例外ハンドリングがあるので修正しましょう (例外クラスを修正してOK))
      */
+    // 何が問題かがわからないLogになっていたので問題になっていたと思う。
     public void test_exception_writing_constructorChallenge() {
         try {
             helpSurprisedYabaiCatch();
@@ -226,7 +227,7 @@ public class Step07ExceptionTest extends PlainTestCase {
         try {
             helpThrowIllegalState();
         } catch (IllegalStateException e) {
-            throw new St7ConstructorChallengeException("Failed to do something.");
+            throw new St7ConstructorChallengeException("Failed to do something.", e);
         }
     }
 
