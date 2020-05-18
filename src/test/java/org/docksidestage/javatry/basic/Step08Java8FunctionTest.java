@@ -143,7 +143,9 @@ public class Step08Java8FunctionTest extends PlainTestCase {
         String sea = helpCallbackFunction(number -> {
             return label + ": " + number;
         });
-        log(sea); // your answer? => number: 7
+        log(sea);
+        // answer
+        // number: 7
         // right
     }
 
