@@ -29,7 +29,12 @@ public class SupercarManufacturer {
         Integer steeringWheelId = catalog.findSteeringWheelSpecId(catalogKey);
 
         SupercarSteeringWheelManufacturer manufacturer = createSupercarSteeringWheelManufacturer();
-        SteeringWheel steeringWheel = manufacturer.makeSteeringWheel(steeringWheelId);
+        SteeringWheel steeringWheel;
+        try {
+            steeringWheel = manufacturer.makeSteeringWheel(steeringWheelId);
+        } catch (SupercarSteeringWheelManufacturer.MakeSteeringWheelCannotMakeBySteeringWheelIdException e){
+            throw new SupercarCannotMakeByCertainCatalogKeyException("Catalog key of " + catalogKey + " is not available to make super car" ,e);
+        }
 
         return new Supercar(steeringWheel);
     }
@@ -42,6 +47,12 @@ public class SupercarManufacturer {
 
         public Supercar(SteeringWheel steeringWheel) {
             // dummy
+        }
+    }
+
+    public static class SupercarCannotMakeByCertainCatalogKeyException extends RuntimeException {
+        public SupercarCannotMakeByCertainCatalogKeyException(String msg, Throwable e){
+            super(msg,e);
         }
     }
 }

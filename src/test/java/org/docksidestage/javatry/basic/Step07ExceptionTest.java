@@ -201,8 +201,9 @@ public class Step07ExceptionTest extends PlainTestCase {
         try {
             new SupercarClient().buySupercar(); // you can fix the classes
             fail("always exception but none");
-        } catch (RuntimeException e) {
-            log("*No hint here for training.", e);
+        } catch (Exception e) {
+            if(e instanceof RuntimeException) log("*No hint here for training.", e);
+            else log(e);
         }
     }
 

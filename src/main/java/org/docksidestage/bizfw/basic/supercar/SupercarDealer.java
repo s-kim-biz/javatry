@@ -25,18 +25,30 @@ public class SupercarDealer {
 
     public Supercar orderSupercar(String clientRequirement) {
         SupercarManufacturer manufacturer = createSupercarManufacturer();
-        if (clientRequirement.contains("steering wheel is like sea")) {
-            return manufacturer.makeSupercar("piari");
-        } else if (clientRequirement.contains("steering wheel is useful on land")) {
-            return manufacturer.makeSupercar("land");
-        } else if (clientRequirement.contains("steering wheel has many shop")) {
-            return manufacturer.makeSupercar("piari");
-        } else {
-            throw new IllegalStateException("Cannot understand the client requirement: " + clientRequirement);
+
+        try {
+            if (clientRequirement.contains("steering wheel is like sea")) {
+                return manufacturer.makeSupercar("piari");
+            } else if (clientRequirement.contains("steering wheel is useful on land")) {
+                return manufacturer.makeSupercar("land");
+            } else if (clientRequirement.contains("steering wheel has many shop")) {
+                return manufacturer.makeSupercar("piari");
+            }
+        } catch (SupercarManufacturer.SupercarCannotMakeByCertainCatalogKeyException e) {
+            throw new SupercarCannnotOrderByClineRequirementException("The client requirement of " + clientRequirement + " is not useful to make super car", e);
         }
+
+        throw new IllegalStateException("Cannot understand the client requirement: " + clientRequirement);
+
     }
 
     protected SupercarManufacturer createSupercarManufacturer() {
         return new SupercarManufacturer();
+    }
+
+    public static class SupercarCannnotOrderByClineRequirementException extends RuntimeException {
+        public SupercarCannnotOrderByClineRequirementException(String msg, Throwable e){
+            super(msg, e);
+        }
     }
 }

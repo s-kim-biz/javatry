@@ -31,11 +31,22 @@ public class SupercarClient {
     public void buySupercar() {
         SupercarDealer dealer = createDealer();
         String clientRequirement = "steering wheel is like sea";
-        Supercar orderedCustomCar = dealer.orderSupercar(clientRequirement);
+        Supercar orderedCustomCar;
+        try {
+            orderedCustomCar = dealer.orderSupercar(clientRequirement);
+        } catch (SupercarDealer.SupercarCannnotOrderByClineRequirementException e){
+            throw new DealerCannotOrderSupercarByClientRequirementException("Dealer cannot order super car by client requirement of " + clientRequirement, e);
+        }
         myCarList.add(orderedCustomCar);
     }
 
     protected SupercarDealer createDealer() {
         return new SupercarDealer();
+    }
+
+    public static class DealerCannotOrderSupercarByClientRequirementException extends RuntimeException {
+        public DealerCannotOrderSupercarByClientRequirementException(String msg, Throwable e){
+            super(msg, e);
+        }
     }
 }
