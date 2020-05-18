@@ -187,6 +187,7 @@ public class Step07ExceptionTest extends PlainTestCase {
             // org.docksidestage.bizfw.basic.screw.SpecialScrewManufacturer$SpecialScrewCannotMakeBySpecException: The kawaii face is not useful to make screw: ScrewSpec:{\(^_^)/}
             // 呼ばれた順番に下から現れると思う
             // エラーの原因は笑顔のものが入っていたこと。
+            // 下に行くほど最近呼ばれたものになる（本当の原因には遠くなる）
             // _/_/_/_/_/_/_/_/_/_/
         }
     }
