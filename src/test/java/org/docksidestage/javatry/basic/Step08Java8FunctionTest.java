@@ -321,14 +321,14 @@ public class Step08Java8FunctionTest extends PlainTestCase {
             }
         }
         String sea = oldfilteredNameList.toString();
-        log(sea); // your answer? => 
+        log(sea); // your answer? => [broadway, dockside]
 
         List<String> filteredNameList = memberList.stream() //
                 .filter(mb -> mb.getWithdrawal().isPresent()) //
                 .map(mb -> mb.getMemberName()) //
                 .collect(Collectors.toList());
         String land = filteredNameList.toString();
-        log(land); // your answer? => 
+        log(land); // your answer? => [broadway, dockside]
     }
 
     /**
@@ -341,10 +341,10 @@ public class Step08Java8FunctionTest extends PlainTestCase {
                 .filter(mb -> mb.getWithdrawal().isPresent())
                 .flatMap(mb -> mb.getPurchaseList().stream())
                 .filter(pur -> pur.getPurchaseId() > 100)
-                .mapToInt(pur -> pur.getPurchasePrice())
-                .distinct()
+                .mapToInt(pur -> pur.getPurchasePrice()) // 100, 200, 200, 300
+                .distinct() // 100, 200, 300
                 .sum();
-        log(sea); // your answer? => 
+        log(sea); // your answer? => 600
     }
 
     // *Stream API will return at Step12 again, it's worth the wait!
