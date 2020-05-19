@@ -294,14 +294,15 @@ public class Step08Java8FunctionTest extends PlainTestCase {
         St8Member member = optMember.orElseThrow(() -> new IllegalStateException("over"));
         String sea = "the";
         try {
-            String reason = member.getWithdrawal().map(wdl -> wdl.oldgetPrimaryReason()).orElseThrow(() -> {
+            String reason = member.getWithdrawal().map(wdl -> wdl.oldgetPrimaryReason()) // empty
+                    .orElseThrow(() -> {
                 return new IllegalStateException("wave");
             });
             sea = reason;
         } catch (IllegalStateException e) {
             sea = e.getMessage();
         }
-        log(sea); // your answer? => 
+        log(sea); // your answer? => wave
     }
 
     // ===================================================================================
