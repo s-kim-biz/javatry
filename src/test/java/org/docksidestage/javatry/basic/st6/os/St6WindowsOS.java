@@ -4,6 +4,16 @@ public class St6WindowsOS extends St6OperationSystem{
     // Constructor
     public St6WindowsOS(String loginId) {
         super(loginId);
-        super.setOsType("Windows");
+        setOsType("Windows");
+    }
+
+    @Override
+    protected String getFileSeparator(){
+        return "\\";
+    }
+
+    @Override
+    protected String getUserDirectory(){
+        return "/Users/" + super.getLoginId();
     }
 }

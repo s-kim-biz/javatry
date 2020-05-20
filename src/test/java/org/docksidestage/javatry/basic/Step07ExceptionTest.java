@@ -109,11 +109,10 @@ public class Step07ExceptionTest extends PlainTestCase {
         try {
             log(f.getCanonicalPath());
         } catch (IOException e) {
-            // TODO kim スタックトレース (stack-trace) が表示されていないです by jflute (2020/05/20)
-            log("cannot get canonical path : " + e.getMessage());
+            // TODO done kim スタックトレース (stack-trace) が表示されていないです by jflute (2020/05/20)
+            log("cannot get canonical path : " + e.getMessage(),e);
         }
-        // TODO kim 不要なセミコロン？ by jflute (2020/05/20)
-        ;
+        // TODO done kim 不要なセミコロン？ by jflute (2020/05/20)
         // IOException extends Exception extends Throwable extends Object
         // get project path
     }
@@ -204,9 +203,9 @@ public class Step07ExceptionTest extends PlainTestCase {
      */
     public void test_exception_translation_improveChallenge() {
         try {
-            // TODO kim [いいね]例外の翻訳 (Exception Translation) がうまくできてます！！！素晴らしい by jflute (2020/05/20)
+            // TODO done kim [いいね]例外の翻訳 (Exception Translation) がうまくできてます！！！素晴らしい by jflute (2020/05/20)
             // これで、例外メッセージとスタックトレースだけで、だいぶ状況が把握できるようになりますね。
-            // TODO kim 一方で...例外メッセージですが、文章の中に値を埋め込む時はクォート(quote)すると良いです by jflute (2020/05/20)
+            // TODO done kim 一方で...例外メッセージですが、文章の中に値を埋め込む時はクォート(quote)すると良いです by jflute (2020/05/20)
             //
             // "Catalog key of " + catalogKey + " is not available to make super car"
             //   ↓↓↓
@@ -217,14 +216,11 @@ public class Step07ExceptionTest extends PlainTestCase {
             new SupercarClient().buySupercar(); // you can fix the classes
             fail("always exception but none");
 
-            // TODO kim チェック例外 (checked exception) は throw されないメソッドなので...catchするのはExceptionじゃなくてRuntimeExceptionで良いです by jflute (2020/05/20)
+            // TODO done kim チェック例外 (checked exception) は throw されないメソッドなので...catchするのはExceptionじゃなくてRuntimeExceptionで良いです by jflute (2020/05/20)
             // Exception を catch するときは、チェック例外がthrowされるメソッドを呼び出したときです。
             // http://dbflute.seasar.org/ja/manual/topic/programming/java/exception.html
-        } catch (Exception e) {
-            if (e instanceof RuntimeException)
-                log("*No hint here for training.", e);
-            else
-                log(e);
+        } catch (RuntimeException e) {
+            log("*No hint here for training.", e);
         }
     }
 

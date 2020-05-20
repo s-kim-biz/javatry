@@ -35,7 +35,7 @@ public class SupercarDealer {
                 return manufacturer.makeSupercar("piari");
             }
         } catch (SupercarManufacturer.SupercarCannotMakeByCertainCatalogKeyException e) {
-            throw new SupercarCannnotOrderByClineRequirementException("The client requirement of " + clientRequirement + " is not useful to make super car", e);
+            throw new SupercarCannnotOrderByClineRequirementException("The client requirement of '" + clientRequirement + "' is not useful to make super car", e);
         }
 
         throw new IllegalStateException("Cannot understand the client requirement: " + clientRequirement);

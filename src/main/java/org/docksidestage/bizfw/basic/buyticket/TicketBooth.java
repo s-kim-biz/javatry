@@ -17,6 +17,9 @@ package org.docksidestage.bizfw.basic.buyticket;
 
 // TODO kim 不要な import 文は消しましょう by subaru (2020/04/23)
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @author jflute
  */
@@ -37,6 +40,11 @@ public class TicketBooth {
     // チケットの種類が一つでOnedayPassportかTwodayPassportかによって渡す量が変わってくるだけだと思ったので量は共通のものを使いました
     private int quantity = MAX_QUANTITY;
     private Integer salesProceeds;
+    private static Map<Integer, Integer> dayAndPrice = new HashMap<Integer,Integer>(){{
+        put(1 ,ONE_DAY_PRICE);
+        put(2, TWO_DAY_PRICE);
+        put(4, FOUR_DAY_PRICE);
+    }};
 
     // ===================================================================================
     //                                                                         Constructor
@@ -49,51 +57,49 @@ public class TicketBooth {
     //                                                                          ==========
     // done kim buyOneDayPassport と buyOneDayPassportTicket もう少し共通化してみましょう by subaru (2020/04/23)
     // この二つは処理としてはほとんど同じで、戻り値だけ違うということだと思うので、共通化できます。
-    public void buyOneDayPassport(int handedMoney) {
-        isPossibleToBuyPassport(quantity, handedMoney, ONE_DAY_PRICE);
-        --quantity;
-        addSalesProceeds(ONE_DAY_PRICE);
+    public void buyCertainDayPassport(int day, int handedMoney) {
+        assertPossibleToBuyPassport(quantity, handedMoney, day);
+        quantity -= day;
+        addSalesProceeds(dayAndPrice.get(day));
     }
 
     public OneDayTicket buyOneDayPassportTicket(int handedMoney) {
-        buyOneDayPassport(handedMoney);
-        return new OneDayTicket(ONE_DAY_PRICE);
-    }
-
-    public TwoDayTicket buyTwoDayPassportTicket(int handedMoney) {
-        buyTwoDayPassport(handedMoney);
-        return new TwoDayTicket(TWO_DAY_PRICE);
+        buyCertainDayPassport(1, handedMoney);
+        return new OneDayTicket(dayAndPrice.get(1));
     }
 
     public Integer buyTwoDayPassport(int handedMoney) {
-        isPossibleToBuyPassport(quantity, handedMoney, TWO_DAY_PRICE);
-        quantity -= 2;
-        addSalesProceeds(TWO_DAY_PRICE);
-        return handedMoney - TWO_DAY_PRICE;
+        buyCertainDayPassport(2, handedMoney);
+        return handedMoney - dayAndPrice.get(2);
+    }
+
+    public TwoDayTicket buyTwoDayPassportTicket(int handedMoney) {
+        buyCertainDayPassport(2, handedMoney);
+        return new TwoDayTicket(dayAndPrice.get(2));
     }
 
     public TicketBuyResult buyTwoDayPassportResult(int handedMoney) {
-        isPossibleToBuyPassport(quantity, handedMoney, TWO_DAY_PRICE);
-        quantity -= 2;
-        return new TicketBuyResult(handedMoney, TWO_DAY_PRICE);
+        buyCertainDayPassport(2, handedMoney);
+        return new TicketBuyResult(2, handedMoney, dayAndPrice.get(2));
     }
 
     // [done] kim 宿題です、こちらもTicketBuyResultを返すように修正してみましょう by winkichanwi
-    public TicketBuyResult buyFourDayPassportTicket(int handedMoney) {
-        isPossibleToBuyPassport(quantity, handedMoney, FOUR_DAY_PRICE);
-        quantity -= 4;
-        addSalesProceeds(FOUR_DAY_PRICE);
-        return new TicketBuyResult(handedMoney, FOUR_DAY_PRICE);
+    public TicketBuyResult buyCertainDayPassportTicket(int days, int handedMoney) {
+        buyCertainDayPassport(days, handedMoney);
+        return new TicketBuyResult(days, handedMoney, dayAndPrice.get(days));
     }
 
-    // TODO kim isXxx()メソッドは、慣習としてbooleanを戻す意味が強いので、例外をthrowするのであれば... by jflute (2020/05/20)
+    // TODO done kim isXxx()メソッドは、慣習としてbooleanを戻す意味が強いので、例外をthrowするのであれば... by jflute (2020/05/20)
     // assertPossibleToBuyPassport() とかの方が良いです。
-    private void isPossibleToBuyPassport(int quantity, int handedMoney, int price) {
+    private void assertPossibleToBuyPassport(int quantity, int handedMoney, int day) {
+        if (!dayAndPrice.containsKey(day)) {
+            throw new TicketTypeNotExistedException("Ticket type of '" + day + "-day' does not exist");
+        }
         if (quantity <= 0) {
             throw new TicketSoldOutException("Sold out");
         }
-        if (handedMoney < price) {
-            throw new TicketShortMoneyException("Short money: " + handedMoney);
+        if (handedMoney < dayAndPrice.get(day)) {
+            throw new TicketShortMoneyException("Short money: '" + handedMoney + "'");
         }
     }
 
@@ -123,6 +129,15 @@ public class TicketBooth {
         }
     }
 
+    public static class TicketTypeNotExistedException extends RuntimeException {
+
+        private static final long serialVersionUID = 1L;
+
+        public TicketTypeNotExistedException(String msg) {
+            super(msg);
+        }
+    }
+
     // ===================================================================================
     //                                                                            Accessor
     //                                                                            ========
@@ -134,13 +149,4 @@ public class TicketBooth {
         return salesProceeds;
     }
 
-    public static String getTicketInfo(Ticket t) {
-        if (t.getDisplayPrice() == ONE_DAY_PRICE) {
-            return "one-day price ticket";
-        } else if (t.getDisplayPrice() == TWO_DAY_PRICE) {
-            return "two-days price ticket";
-        } else {
-            return "uncertain ticket";
-        }
-    }
 }

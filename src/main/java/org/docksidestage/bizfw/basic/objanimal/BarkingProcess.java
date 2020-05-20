@@ -1,5 +1,8 @@
 package org.docksidestage.bizfw.basic.objanimal;
 
+/**
+ * @author s.kim
+ */
 public abstract class BarkingProcess {
     // ===================================================================================
     //                                                                               Bark

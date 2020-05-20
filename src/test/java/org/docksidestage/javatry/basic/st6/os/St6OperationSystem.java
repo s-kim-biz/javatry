@@ -17,8 +17,9 @@ package org.docksidestage.javatry.basic.st6.os;
 
 /**
  * @author jflute
+ * @author s.kim
  */
-public class St6OperationSystem {
+public abstract class St6OperationSystem {
 
     // ===================================================================================
     //                                                                          Definition
@@ -36,7 +37,7 @@ public class St6OperationSystem {
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public St6OperationSystem(String loginId) {
+    protected St6OperationSystem(String loginId) {
         this.loginId = loginId;
     }
 
@@ -50,29 +51,13 @@ public class St6OperationSystem {
         return resourcePath.replace("/", fileSeparator);
     }
 
-    protected String getFileSeparator() {
-        if (OS_TYPE_MAC.equalsIgnoreCase(osType)) {
-            return "/";
-        } else if (OS_TYPE_WINDOWS.equalsIgnoreCase(osType)) {
-            return "\\";
-        } else if (OS_TYPE_OLD_WINDOWS.equalsIgnoreCase(osType)) {
-            return "\\";
-        } else {
-            throw new IllegalStateException("Unknown osType: " + osType);
-        }
-    }
+    protected abstract String getFileSeparator();
 
-    protected String getUserDirectory() {
-        if (OS_TYPE_MAC.equalsIgnoreCase(osType)) {
-            return "/Users/" + loginId;
-        } else if (OS_TYPE_WINDOWS.equalsIgnoreCase(osType)) {
-            return "/Users/" + loginId;
-        } else if (OS_TYPE_OLD_WINDOWS.equalsIgnoreCase(osType)) {
-            return "/Documents and Settigs/" + loginId;
-        } else {
-            throw new IllegalStateException("Unknown osType: " + osType);
-        }
-    }
+    protected abstract String getUserDirectory();
 
     protected void setOsType(String type) { osType = type; }
+
+    public String getLoginId() {
+        return loginId;
+    }
 }

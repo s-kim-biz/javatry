@@ -7,13 +7,15 @@ public class TicketBuyResult {
     //                                                                           =========
     private final int displayPrice;
     private final int change;
+    private final int days;
 
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public TicketBuyResult(int handedMoney, int displayPrice) {
+    public TicketBuyResult(int days, int handedMoney, int displayPrice) {
         this.change = handedMoney - displayPrice;
         this.displayPrice = displayPrice;
+        this.days = days;
     }
 
     // ===================================================================================
@@ -32,4 +34,6 @@ public class TicketBuyResult {
     public FourDayTicket getFourDayTicket() {
         return new FourDayTicket(displayPrice);
     }
+
+    public Ticket getTicket() { return new DaysTicket(this.days, this.displayPrice);}
 }

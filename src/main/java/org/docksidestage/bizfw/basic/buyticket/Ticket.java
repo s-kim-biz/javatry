@@ -7,4 +7,7 @@ public interface Ticket {
     int getDisplayPrice();
 
     boolean isAlreadyIn();
+
+    int getDays();
+
 }

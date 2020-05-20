@@ -35,7 +35,7 @@ public class SupercarClient {
         try {
             orderedCustomCar = dealer.orderSupercar(clientRequirement);
         } catch (SupercarDealer.SupercarCannnotOrderByClineRequirementException e){
-            throw new DealerCannotOrderSupercarByClientRequirementException("Dealer cannot order super car by client requirement of " + clientRequirement, e);
+            throw new DealerCannotOrderSupercarByClientRequirementException("Dealer cannot order super car by client requirement of '" + clientRequirement + "'", e);
         }
         myCarList.add(orderedCustomCar);
     }

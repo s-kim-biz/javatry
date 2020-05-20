@@ -159,7 +159,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         // #fixme you if step05 has been finished, you can use this code by jflute (2019/06/15)
         // _/_/_/_/_/_/_/_/_/_/
         //Ticket ticket = booth.buyOneDayPassport(10000);
-        booth.buyOneDayPassport(10000); // as temporary, remove if you finished steo05
+        booth.buyCertainDayPassport(1, 10000); // as temporary, remove if you finished steo05
         OneDayTicket ticket = new OneDayTicket(7400); // also here
 
         // *buyOneDayPassport() has this process:
@@ -244,7 +244,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         // この場合は、子クラスが独自にもつメソッドには参照できない
         // ただし、子クラスの変数はインスタンスのあるところをさしているので型は親であっても子クラスと親クラス両方にあるメソッドは呼べる
 
-        // TODO Polymorphismの確かな動作原理
+        // TODO [question] Polymorphismの確かな動作原理 by kim
         // C++であるとvtableのようなポインタテーブルを用いてするといった流れがあったのですが。。。
         // JAVAでのPolymorphismが動作する理由、原理について知りたいです。
     }
@@ -288,7 +288,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         int land = animal.getHitPoint();
         log(land); // your answer? => 5
         // Right
-        // TODO Javaではインスタンスにあるところに、メッセジーを送るみたいな話を聞いていますが
+        // TODO [question] Javaではインスタンスにあるところに、メッセジーを送るみたいな話を聞いていますが by kim
         // その意味が何なのかが具体的にどうなのかが勉強しないといけない
     }
 
@@ -420,7 +420,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
      */
 
     public void test_objectOriented_writing_generalization_extractToAbstract() {
-        // TODO kim "int offset = pageSize * (pageNumber - 1)" が全く同じなので、再利用したいですね by jflute (2020/05/20)
+        // TODO done kim "int offset = pageSize * (pageNumber - 1)" が全く同じなので、再利用したいですね by jflute (2020/05/20)
         // "テンプレートメソッドパターン" (Template Method Pattern) を調べてみてください。
         Database ms = new St6MySql();
         Database ps = new St6PostgreSql();
@@ -435,9 +435,10 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
      * (St6OperationSystem (basic.st6.os) からコンクリートクラスを抽出してみましょう (スーパークラスとサブクラスの関係に))
      */
     public void test_objectOriented_writing_specialization_extractToConcrete() {
-        // TODO kim "super.setOsType("Mac");" は、super. は不要です by jflute (2020/05/20)
+        // TODO done kim "super.setOsType("Mac");" は、super. は不要です by jflute (2020/05/20)
         // 逆に、super. を付けてしまうと、そのメソッドをオーバーライドしたときに、this のメソッドが呼ばれなくなってしまいます。
-        // TODO kim せっかく MacOS, WindowsOS と分かれているので、St6OperationSystem 内の if の分岐を無くそう by jflute (2020/05/20)
+        // 確かにその通りです！
+        // TODO done kim せっかく MacOS, WindowsOS と分かれているので、St6OperationSystem 内の if の分岐を無くそう by jflute (2020/05/20)
         // コンクリートクラスを抽出したからには、St6OperationSystem の中には MacOS や WindowsOS という言葉を登場させないように。
         String loginIdForMac = "s.kim.for.mac@bizreach.co.jp";
         String relativePath = "javatry/basic/st6";

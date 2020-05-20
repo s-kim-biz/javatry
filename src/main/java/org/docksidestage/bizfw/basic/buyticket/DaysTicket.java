@@ -1,12 +1,17 @@
 package org.docksidestage.bizfw.basic.buyticket;
 
-public class FourDayTicket implements Ticket {
-
+/**
+ * @author s.kim
+ */
+public class DaysTicket implements Ticket {
     private final int displayPrice;
     private int countPark;
-    private static final int COUNT = 4;
+    private final int days;
 
-    public FourDayTicket(int displayPrice) { this.displayPrice = displayPrice; }
+    public DaysTicket(int days, int displayPrice) {
+        this.days = days;
+        this.displayPrice = displayPrice;
+    }
 
     public void doInPark() {
         if (this.isAlreadyIn()) {
@@ -20,8 +25,10 @@ public class FourDayTicket implements Ticket {
     }
 
     public boolean isAlreadyIn() {
-        return !(countPark < COUNT);
+        return !(countPark < days);
     }
 
-    public int getDays() { return 4; }
+    public int getDays() {
+        return this.days;
+    }
 }

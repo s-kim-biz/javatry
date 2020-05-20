@@ -33,7 +33,7 @@ public class SupercarManufacturer {
         try {
             steeringWheel = manufacturer.makeSteeringWheel(steeringWheelId);
         } catch (SupercarSteeringWheelManufacturer.MakeSteeringWheelCannotMakeBySteeringWheelIdException e){
-            throw new SupercarCannotMakeByCertainCatalogKeyException("Catalog key of " + catalogKey + " is not available to make super car" ,e);
+            throw new SupercarCannotMakeByCertainCatalogKeyException("Catalog key of '" + catalogKey + "' is not available to make super car" ,e);
         }
 
         return new Supercar(steeringWheel);

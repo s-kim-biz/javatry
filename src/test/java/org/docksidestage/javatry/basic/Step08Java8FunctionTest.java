@@ -172,23 +172,21 @@ public class Step08Java8FunctionTest extends PlainTestCase {
      */
     public void test_java8_lambda_convertStyle_basic() {
         // TODO kim こちら、書き方を変えるエクササイズです。JavaDocの要件通りに書き方を変えてみてください by jflute (2020/05/20)
-        helpCallbackSupplier(new Supplier<String>() { // sea
-            public String get() {
-                return "broadway";
-            }
+        helpCallbackSupplier(() -> {
+            return "broadway";
         });
 
         // answer
         // broadway
 
-        helpCallbackSupplier(() -> { // land
-            return "dockside";
-        });
+        helpCallbackSupplier(() -> "dockside");
 
         // answer
         // dockside
 
-        helpCallbackSupplier(() -> "hangar"); // piari
+        helpCallbackSupplier(() -> {
+            return "hangar";
+        }); // piari
 
         // answer
         // hangar

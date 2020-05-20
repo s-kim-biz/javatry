@@ -21,7 +21,7 @@ package org.docksidestage.javatry.basic.st6.dbms;
 public class St6PostgreSql extends Database {
 
     public String buildPagingQuery(int pageSize, int pageNumber) {
-        int offset = pageSize * (pageNumber - 1);
+        int offset = calcOffSet(pageSize, pageNumber);
         return "offset " + offset + " limit " + pageSize;
     }
 }

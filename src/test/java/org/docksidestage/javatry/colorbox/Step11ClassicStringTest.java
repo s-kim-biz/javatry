@@ -17,6 +17,8 @@ package org.docksidestage.javatry.colorbox;
 
 import java.util.List;
 
+import javax.print.DocFlavor;
+
 import org.docksidestage.bizfw.colorbox.ColorBox;
 import org.docksidestage.bizfw.colorbox.color.BoxColor;
 import org.docksidestage.bizfw.colorbox.yours.YourPrivateRoom;
@@ -53,6 +55,8 @@ public class Step11ClassicStringTest extends PlainTestCase {
         } else {
             log("*not found");
         }
+        // answer
+        // 5 (green)
     }
 
     /**
@@ -60,6 +64,26 @@ public class Step11ClassicStringTest extends PlainTestCase {
      * (カラーボックスに入ってる文字列の中で、一番長い文字列は？)
      */
     public void test_length_findMax() {
+        List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
+        if(!colorBoxList.isEmpty()){
+            int maxLength = -1;
+            int tempLength = 0;
+            String maxLengthColorName = null;
+            for(ColorBox colorBox: colorBoxList){
+                tempLength = colorBox.getColor().getColorName().length();
+                if(tempLength > maxLength){
+                    maxLength = tempLength;
+                    maxLengthColorName = colorBox.getColor().getColorName();
+                }
+            }
+            if(maxLengthColorName != null) log( maxLength + " (" + maxLengthColorName + ")");
+            else log("color can't be found!!");
+        }
+        else {
+            log("box can't be found!!");
+        }
+        // answer
+        // 6 (yellow)
     }
 
     /**

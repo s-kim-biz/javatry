@@ -21,4 +21,6 @@ public class TwoDayTicket implements Ticket {
     public boolean isAlreadyIn() {
         return !(countPark < COUNT);
     }
+
+    public int getDays() { return 2; }
 }
