@@ -145,6 +145,14 @@ public class Step12StreamStringTest extends PlainTestCase {
      * (カラーボックスの中で、色の名前が一番長いものは？)
      */
     public void test_length_findMaxColorSize() {
+        List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
+        String maxLengthColorName = colorBoxList.stream()
+                .map(colorBox -> colorBox.getColor())
+                .map(color -> color.getColorName())
+                .max(Comparator.comparingInt(String::length))
+                .orElse(null);
+
+        log(maxLengthColorName);
     }
 
     // ===================================================================================
