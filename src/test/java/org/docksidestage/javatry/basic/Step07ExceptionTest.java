@@ -15,12 +15,14 @@
  */
 package org.docksidestage.javatry.basic;
 
-import org.docksidestage.bizfw.basic.supercar.SupercarClient;
-import org.docksidestage.javatry.basic.st7.St7ConstructorChallengeException;
-import org.docksidestage.unit.PlainTestCase;
 import java.io.File;
 import java.io.IOException;
 
+import org.docksidestage.bizfw.basic.supercar.SupercarClient;
+import org.docksidestage.javatry.basic.st7.St7ConstructorChallengeException;
+import org.docksidestage.unit.PlainTestCase;
+
+// TODO kim authorの修正をお願いしますー by jflute (2020/05/20)
 /**
  * The test of variable. <br>
  * Operate as javadoc. If it's question style, write your answer before test execution. <br>
@@ -107,8 +109,11 @@ public class Step07ExceptionTest extends PlainTestCase {
         try {
             log(f.getCanonicalPath());
         } catch (IOException e) {
+            // TODO kim スタックトレース (stack-trace) が表示されていないです by jflute (2020/05/20)
             log("cannot get canonical path : " + e.getMessage());
-        };
+        }
+        // TODO kim 不要なセミコロン？ by jflute (2020/05/20)
+        ;
         // IOException extends Exception extends Throwable extends Object
         // get project path
     }
@@ -199,11 +204,27 @@ public class Step07ExceptionTest extends PlainTestCase {
      */
     public void test_exception_translation_improveChallenge() {
         try {
+            // TODO kim [いいね]例外の翻訳 (Exception Translation) がうまくできてます！！！素晴らしい by jflute (2020/05/20)
+            // これで、例外メッセージとスタックトレースだけで、だいぶ状況が把握できるようになりますね。
+            // TODO kim 一方で...例外メッセージですが、文章の中に値を埋め込む時はクォート(quote)すると良いです by jflute (2020/05/20)
+            //
+            // "Catalog key of " + catalogKey + " is not available to make super car"
+            //   ↓↓↓
+            // "Catalog key of '" + catalogKey + "' is not available to make super car"
+            //
+            // どれが動的な値で、どれが固定的な文章なのか、すぐに判断が付くように
+            //
             new SupercarClient().buySupercar(); // you can fix the classes
             fail("always exception but none");
+
+            // TODO kim チェック例外 (checked exception) は throw されないメソッドなので...catchするのはExceptionじゃなくてRuntimeExceptionで良いです by jflute (2020/05/20)
+            // Exception を catch するときは、チェック例外がthrowされるメソッドを呼び出したときです。
+            // http://dbflute.seasar.org/ja/manual/topic/programming/java/exception.html
         } catch (Exception e) {
-            if(e instanceof RuntimeException) log("*No hint here for training.", e);
-            else log(e);
+            if (e instanceof RuntimeException)
+                log("*No hint here for training.", e);
+            else
+                log(e);
         }
     }
 
