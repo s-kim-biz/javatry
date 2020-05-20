@@ -33,7 +33,7 @@ import org.docksidestage.unit.PlainTestCase;
  * o don't fix the YourPrivateRoom class and color-box classes
  * </pre>
  * @author jflute
- * @author your_name_here
+ * @author s.kim
  */
 public class Step11ClassicStringTest extends PlainTestCase {
 
@@ -68,15 +68,15 @@ public class Step11ClassicStringTest extends PlainTestCase {
         if(!colorBoxList.isEmpty()){
             int maxLength = -1;
             int tempLength = 0;
-            String maxLengthColorName = null;
+            String maxLengthString = null;
             for(ColorBox colorBox: colorBoxList){
-                tempLength = colorBox.getColor().getColorName().length();
+                tempLength = colorBox.toString().length();
                 if(tempLength > maxLength){
                     maxLength = tempLength;
-                    maxLengthColorName = colorBox.getColor().getColorName();
+                    maxLengthString = colorBox.toString();
                 }
             }
-            if(maxLengthColorName != null) log( maxLength + " (" + maxLengthColorName + ")");
+            if(maxLengthString != null) log( maxLength + " (" + maxLengthString + ")");
             else log("color can't be found!!");
         }
         else {
@@ -91,6 +91,28 @@ public class Step11ClassicStringTest extends PlainTestCase {
      * (カラーボックスに入ってる文字列の中で、一番長いものと短いものの差は何文字？)
      */
     public void test_length_findMaxMinDiff() {
+        List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
+        if(!colorBoxList.isEmpty()){
+            int maxLength = Integer.MIN_VALUE;
+            int minLength = Integer.MAX_VALUE;
+            int tempLength = 0;
+            for(ColorBox colorBox: colorBoxList){
+                tempLength = colorBox.toString().length();
+                if(tempLength > maxLength){
+                    maxLength = tempLength;
+                }
+                if(tempLength < minLength){
+                    minLength = tempLength;
+                }
+            }
+            if(maxLength == Integer.MIN_VALUE || minLength == Integer.MAX_VALUE) log("cannot get color from color box");
+            else log("max-min diff: (" + (maxLength - minLength) + ")");
+        }
+        else {
+            log("box can't be found!!");
+        }
+        // answer
+        // max-min diff: (3)
     }
 
     /**
