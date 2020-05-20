@@ -70,13 +70,12 @@ public class Step12StreamStringTest extends PlainTestCase {
         // というように書くともうちょいスッキリします。
         // いつ map() するか？ いつ filter() するか、うまく調整しよう。
         //
-        // TODO kim ありがとう。content != null の filter は、要らないと思いますがどうでしょう？ by jflute (2020/05/20)
+        // TODO done kim ありがとう。content != null の filter は、要らないと思いますがどうでしょう？ by jflute (2020/05/20)
         // その一つ前の .map(boxSpace -> boxSpace.getContent()) で null が戻ってきたら自然と filtering されているはずです。
         // そうじゃないにしても、content instanceof String が null は除外されるはずです。
         String answer = colorBoxList.stream()
                 .flatMap(colorBox -> colorBox.getSpaceList().stream())
                 .map(boxSpace -> boxSpace.getContent())
-                .filter(content -> content != null)
                 .filter(content -> content instanceof String)
                 .map(content -> (String) content)
                 .max(Comparator.comparingInt(str -> str.length()))
@@ -89,6 +88,22 @@ public class Step12StreamStringTest extends PlainTestCase {
      * (カラーボックスに入ってる文字列の中で、一番長いものと短いものの差は何文字？)
      */
     public void test_length_findMaxMinDiff() {
+        List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
+        int maxLength = colorBoxList.stream()
+                .flatMap(colorBox -> colorBox.getSpaceList().stream())
+                .map(boxSpace -> boxSpace.getContent())
+                .filter(content -> content instanceof String)
+                .mapToInt(content -> ((String) content).length())
+                .max().orElseThrow(() -> new RuntimeException("there is empty list of color box"));
+
+        int minLength = colorBoxList.stream()
+                .flatMap(colorBox -> colorBox.getSpaceList().stream())
+                .map(boxSpace -> boxSpace.getContent())
+                .filter(content -> content instanceof String)
+                .mapToInt(content -> ((String) content).length())
+                .min().orElseThrow(() -> new RuntimeException("there is empty list of color box"));
+
+        log("difference : " + (maxLength - minLength));
     }
 
     // has small #adjustmemts from ClassicStringTest
