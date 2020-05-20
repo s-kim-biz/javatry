@@ -54,15 +54,15 @@ public class Step12StreamStringTest extends PlainTestCase {
     public void test_length_findMax() {
         List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
         //
-        // TODO done kim boxSpace.getContent().getClass().equals(String.class)は... by jflute (2020/05/20)
+        // done kim boxSpace.getContent().getClass().equals(String.class)は... by jflute (2020/05/20)
         // boxSpace.getContent() instanceof String でOKです。(この場合、どっちでも大丈夫だけど、instanceofの方がシンプルかな)
         //
-        // TODO done kim .map(boxSpace -> boxSpace.getContent().toString())は... by jflute (2020/05/20)
+        // done kim .map(boxSpace -> boxSpace.getContent().toString())は... by jflute (2020/05/20)
         // .map(boxSpace -> (String)boxSpace.getContent())
         // というようにダウンキャストでOK。その一つまで中身のインスタンスが String であると断定しているから。
         // toString()使ってると、IntegerとかDateとかも混ざるのかな？って思ってしまう。
         //
-        // TODO done kim この辺は、ある程度は自由なんだけど、getContent() が多すぎるので... by jflute (2020/05/20)
+        // done kim この辺は、ある程度は自由なんだけど、getContent() が多すぎるので... by jflute (2020/05/20)
         // .map(boxSpace -> boxSpace.getContent())
         // .filter(content -> content instanceof String)
         // .map(content -> (String)content)
@@ -70,12 +70,15 @@ public class Step12StreamStringTest extends PlainTestCase {
         // というように書くともうちょいスッキリします。
         // いつ map() するか？ いつ filter() するか、うまく調整しよう。
         //
+        // TODO kim ありがとう。content != null の filter は、要らないと思いますがどうでしょう？ by jflute (2020/05/20)
+        // その一つ前の .map(boxSpace -> boxSpace.getContent()) で null が戻ってきたら自然と filtering されているはずです。
+        // そうじゃないにしても、content instanceof String が null は除外されるはずです。
         String answer = colorBoxList.stream()
                 .flatMap(colorBox -> colorBox.getSpaceList().stream())
                 .map(boxSpace -> boxSpace.getContent())
                 .filter(content -> content != null)
                 .filter(content -> content instanceof String)
-                .map(content -> (String)content)
+                .map(content -> (String) content)
                 .max(Comparator.comparingInt(str -> str.length()))
                 .orElse("*not found");
         log(answer);
