@@ -478,7 +478,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
     public void test_objectOriented_writing_withDelegation() {
         // Done kim "Animal extends BarkingProcess" になっているけど、"Animal is a BarkingProcess" だろうか？ by jflute (2020/05/20)
         // 意味的に is-a の関係になっていないものを継承しないようにしよう。
-        // TODO done kim ありがとう。いいね。BarkingProcessの... by jflute (2020/05/20)
+        // done kim ありがとう。いいね。BarkingProcessの... by jflute (2020/05/20)
         //
         // private Animal animal = null;
         //
