@@ -15,7 +15,6 @@
  */
 package org.docksidestage.javatry.basic;
 
-import org.docksidestage.bizfw.basic.buyticket.FourDayTicket;
 import org.docksidestage.bizfw.basic.buyticket.OneDayTicket;
 import org.docksidestage.bizfw.basic.buyticket.Ticket;
 import org.docksidestage.bizfw.basic.buyticket.TicketBooth;
@@ -42,7 +41,7 @@ public class Step05ClassTest extends PlainTestCase {
      */
     public void test_class_howToUse_basic() {
         TicketBooth booth = new TicketBooth();
-        booth.buyCertainDayPassport(1,7400);
+        booth.buyCertainDayPassport(1, 7400);
         int sea = booth.getQuantity();
         log(sea); // your answer? => 9
         // Right
@@ -51,7 +50,7 @@ public class Step05ClassTest extends PlainTestCase {
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_class_howToUse_overpay() {
         TicketBooth booth = new TicketBooth();
-        booth.buyCertainDayPassport(1,10000);
+        booth.buyCertainDayPassport(1, 10000);
         Integer sea = booth.getSalesProceeds();
         log(sea); // your answer? => 10000
         // Right
@@ -115,7 +114,7 @@ public class Step05ClassTest extends PlainTestCase {
      */
     public void test_class_letsFix_salesProceedsIncrease() {
         TicketBooth booth = new TicketBooth();
-        booth.buyCertainDayPassport(1,10000);
+        booth.buyCertainDayPassport(1, 10000);
         Integer sea = booth.getSalesProceeds();
         log(sea); // should be same as one-day price, visual check here
     }
@@ -180,13 +179,13 @@ public class Step05ClassTest extends PlainTestCase {
         // Right
     }
 
-    // TODO done kim これいま、テスト実行できないです。「テストメソッドは引数無し」という規約があるので引数は消しましょう by jflute (2020/05/20)
+    // done kim これいま、テスト実行できないです。「テストメソッドは引数無し」という規約があるので引数は消しましょう by jflute (2020/05/20)
     /**
      * Now you cannot judge ticket type "one-day or two-day?", so add method to judge it. <br>
      * (チケットをもらってもOneDayなのかTwoDayなのか区別が付きません。区別を付けられるメソッドを追加しましょう)
      */
     public void test_class_moreFix_type() {
-        // TODO kim TicketBooth に判定するメソッドを追加するのではなく、Ticket自体で判定できるようにしましょう by jflute (2020/05/20)
+        // done kim TicketBooth に判定するメソッドを追加するのではなく、Ticket自体で判定できるようにしましょう by jflute (2020/05/20)
         TicketBooth booth = new TicketBooth();
         OneDayTicket oneDayTicket = booth.buyOneDayPassportTicket(10000);
         log(oneDayTicket.getDays());
@@ -234,10 +233,11 @@ public class Step05ClassTest extends PlainTestCase {
         TicketBooth b = new TicketBooth();
         // done kim buyFourDayPassportTicket() の戻り値の TicketBuyResult で getTicket() を呼ぶと TwoDayTicket が戻ってくるのは矛盾していないかな？ by jflute (2020/05/20)
         // その通りです。ですので、getTwoDayTicket, getFourDayTicketのようにメソッドを書きました。
-        // TODO done kim [続き] もし、buySixDayPassport() が増えたとき、さらに getSixDayTicket() を追加するのかな？ by jflute (2020/05/20)
+        // done kim [続き] もし、buySixDayPassport() が増えたとき、さらに getSixDayTicket() を追加するのかな？ by jflute (2020/05/20)
         // buyFourDayPassportTicket() の戻り値で、getTwoDayTicket() が呼び出せてしまうのも変なので...
         // 抽象化された Ticket を戻すようにしたらどうでしょう？
-        Ticket fourDayTicket= b.buyCertainDayPassportTicket(4, 50000).getTicket();
+        // TODO kim ありがとう。いいね！ もう、TicketBuyResult の getTwoDayTicket() とかは、要らないんじゃないかな？ by jflute (2020/05/20)
+        Ticket fourDayTicket = b.buyCertainDayPassportTicket(4, 50000).getTicket();
 
         log(fourDayTicket.getDisplayPrice());
 

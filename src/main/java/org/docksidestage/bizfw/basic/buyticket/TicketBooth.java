@@ -15,7 +15,7 @@
  */
 package org.docksidestage.bizfw.basic.buyticket;
 
-// TODO kim 不要な import 文は消しましょう by subaru (2020/04/23)
+// done kim 不要な import 文は消しましょう by subaru (2020/04/23)
 
 import java.util.HashMap;
 import java.util.Map;
@@ -40,11 +40,13 @@ public class TicketBooth {
     // チケットの種類が一つでOnedayPassportかTwodayPassportかによって渡す量が変わってくるだけだと思ったので量は共通のものを使いました
     private int quantity = MAX_QUANTITY;
     private Integer salesProceeds;
-    private static Map<Integer, Integer> dayAndPrice = new HashMap<Integer,Integer>(){{
-        put(1 ,ONE_DAY_PRICE);
-        put(2, TWO_DAY_PRICE);
-        put(4, FOUR_DAY_PRICE);
-    }};
+    private static Map<Integer, Integer> dayAndPrice = new HashMap<Integer, Integer>() {
+        {
+            put(1, ONE_DAY_PRICE);
+            put(2, TWO_DAY_PRICE);
+            put(4, FOUR_DAY_PRICE);
+        }
+    };
 
     // ===================================================================================
     //                                                                         Constructor
@@ -89,7 +91,7 @@ public class TicketBooth {
         return new TicketBuyResult(days, handedMoney, dayAndPrice.get(days));
     }
 
-    // TODO done kim isXxx()メソッドは、慣習としてbooleanを戻す意味が強いので、例外をthrowするのであれば... by jflute (2020/05/20)
+    // done kim isXxx()メソッドは、慣習としてbooleanを戻す意味が強いので、例外をthrowするのであれば... by jflute (2020/05/20)
     // assertPossibleToBuyPassport() とかの方が良いです。
     private void assertPossibleToBuyPassport(int quantity, int handedMoney, int day) {
         if (!dayAndPrice.containsKey(day)) {
