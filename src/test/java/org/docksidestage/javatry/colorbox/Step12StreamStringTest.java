@@ -53,6 +53,23 @@ public class Step12StreamStringTest extends PlainTestCase {
      */
     public void test_length_findMax() {
         List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
+        //
+        // TODO kim boxSpace.getContent().getClass().equals(String.class)は... by jflute (2020/05/20)
+        // boxSpace.getContent() instanceof String でOKです。(この場合、どっちでも大丈夫だけど、instanceofの方がシンプルかな)
+        //
+        // TODO kim .map(boxSpace -> boxSpace.getContent().toString())は... by jflute (2020/05/20)
+        // .map(boxSpace -> (String)boxSpace.getContent())
+        // というようにダウンキャストでOK。その一つまで中身のインスタンスが String であると断定しているから。
+        // toString()使ってると、IntegerとかDateとかも混ざるのかな？って思ってしまう。
+        //
+        // TODO kim この辺は、ある程度は自由なんだけど、getContent() が多すぎるので... by jflute (2020/05/20)
+        // .map(boxSpace -> boxSpace.getContent())
+        // .filter(content -> content instanceof String)
+        // .map(content -> (String)content)
+        // ...
+        // というように書くともうちょいスッキリします。
+        // いつ map() するか？ いつ filter() するか、うまく調整しよう。
+        //
         String answer = colorBoxList.stream()
                 .flatMap(colorBox -> colorBox.getSpaceList().stream())
                 .filter(boxSpace -> boxSpace.getContent() != null)
