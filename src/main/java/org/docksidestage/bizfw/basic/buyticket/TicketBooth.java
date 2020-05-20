@@ -33,7 +33,7 @@ public class TicketBooth {
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    // TODO done kim MAX_QUANTITYはoneDayPassportやtwoDayPassportを共通しているのでしょうか？現実的にどんユースケースでしょうか？ by winkichanwi
+    // done kim MAX_QUANTITYはoneDayPassportやtwoDayPassportを共通しているのでしょうか？現実的にどんユースケースでしょうか？ by winkichanwi
     // チケットの種類が一つでOnedayPassportかTwodayPassportかによって渡す量が変わってくるだけだと思ったので量は共通のものを使いました
     private int quantity = MAX_QUANTITY;
     private Integer salesProceeds;
@@ -47,7 +47,7 @@ public class TicketBooth {
     // ===================================================================================
     //                                                                          Buy Ticket
     //                                                                          ==========
-    // TODO done kim buyOneDayPassport と buyOneDayPassportTicket もう少し共通化してみましょう by subaru (2020/04/23)
+    // done kim buyOneDayPassport と buyOneDayPassportTicket もう少し共通化してみましょう by subaru (2020/04/23)
     // この二つは処理としてはほとんど同じで、戻り値だけ違うということだと思うので、共通化できます。
     public void buyOneDayPassport(int handedMoney) {
         isPossibleToBuyPassport(quantity, handedMoney, ONE_DAY_PRICE);
@@ -86,6 +86,8 @@ public class TicketBooth {
         return new TicketBuyResult(handedMoney, FOUR_DAY_PRICE);
     }
 
+    // TODO kim isXxx()メソッドは、慣習としてbooleanを戻す意味が強いので、例外をthrowするのであれば... by jflute (2020/05/20)
+    // assertPossibleToBuyPassport() とかの方が良いです。
     private void isPossibleToBuyPassport(int quantity, int handedMoney, int price) {
         if (quantity <= 0) {
             throw new TicketSoldOutException("Sold out");

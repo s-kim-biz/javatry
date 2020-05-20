@@ -180,11 +180,13 @@ public class Step05ClassTest extends PlainTestCase {
         // Right
     }
 
+    // TODO kim これいま、テスト実行できないです。「テストメソッドは引数無し」という規約があるので引数は消しましょう by jflute (2020/05/20)
     /**
      * Now you cannot judge ticket type "one-day or two-day?", so add method to judge it. <br>
      * (チケットをもらってもOneDayなのかTwoDayなのか区別が付きません。区別を付けられるメソッドを追加しましょう)
      */
     public void test_class_moreFix_type(Ticket t) {
+        // TODO kim TicketBooth に判定するメソッドを追加するのではなく、Ticket自体で判定できるようにしましょう by jflute (2020/05/20)
         log(TicketBooth.getTicketInfo(t));
     }
 
@@ -226,8 +228,11 @@ public class Step05ClassTest extends PlainTestCase {
      */
     public void test_class_moreFix_wonder() {
         TicketBooth b = new TicketBooth();
-        // TODO done kim buyFourDayPassportTicket() の戻り値の TicketBuyResult で getTicket() を呼ぶと TwoDayTicket が戻ってくるのは矛盾していないかな？ by jflute (2020/05/20)
+        // done kim buyFourDayPassportTicket() の戻り値の TicketBuyResult で getTicket() を呼ぶと TwoDayTicket が戻ってくるのは矛盾していないかな？ by jflute (2020/05/20)
         // その通りです。ですので、getTwoDayTicket, getFourDayTicketのようにメソッドを書きました。
+        // TODO kim [続き] もし、buySixDayPassport() が増えたとき、さらに getSixDayTicket() を追加するのかな？ by jflute (2020/05/20)
+        // buyFourDayPassportTicket() の戻り値で、getTwoDayTicket() が呼び出せてしまうのも変なので...
+        // 抽象化された Ticket を戻すようにしたらどうでしょう？
         FourDayTicket fourDayTicket = b.buyFourDayPassportTicket(50000).getFourDayTicket();
 
         log(fourDayTicket.getDisplayPrice());
