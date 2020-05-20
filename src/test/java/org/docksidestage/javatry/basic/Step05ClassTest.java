@@ -173,7 +173,7 @@ public class Step05ClassTest extends PlainTestCase {
         TicketBooth booth = new TicketBooth();
         int handedMoney = 20000;
         TicketBuyResult twoDayPassportResult = booth.buyTwoDayPassportResult(handedMoney);
-        TwoDayTicket twoDayPassport = twoDayPassportResult.getTicket();
+        TwoDayTicket twoDayPassport = twoDayPassportResult.getTwoDayTicket();
         int change = twoDayPassportResult.getChange();
         log(twoDayPassport.getDisplayPrice() + change); // should be same as money
         // 20000
@@ -226,8 +226,9 @@ public class Step05ClassTest extends PlainTestCase {
      */
     public void test_class_moreFix_wonder() {
         TicketBooth b = new TicketBooth();
-        // TODO kim buyFourDayPassportTicket() の戻り値の TicketBuyResult で getTicket() を呼ぶと TwoDayTicket が戻ってくるのは矛盾していないかな？ by jflute (2020/05/20)
-        FourDayTicket fourDayTicket = new FourDayTicket(b.buyFourDayPassportTicket(50000).getDisplayPrice());
+        // TODO done kim buyFourDayPassportTicket() の戻り値の TicketBuyResult で getTicket() を呼ぶと TwoDayTicket が戻ってくるのは矛盾していないかな？ by jflute (2020/05/20)
+        // その通りです。ですので、getTwoDayTicket, getFourDayTicketのようにメソッドを書きました。
+        FourDayTicket fourDayTicket = b.buyFourDayPassportTicket(50000).getFourDayTicket();
 
         log(fourDayTicket.getDisplayPrice());
 

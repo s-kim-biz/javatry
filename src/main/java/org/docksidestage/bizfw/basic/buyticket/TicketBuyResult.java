@@ -25,7 +25,11 @@ public class TicketBuyResult {
 
     public int getChange() { return change; }
 
-    public TwoDayTicket getTicket() {
+    public TwoDayTicket getTwoDayTicket() {
         return new TwoDayTicket(displayPrice);
+    }
+
+    public FourDayTicket getFourDayTicket() {
+        return new FourDayTicket(displayPrice);
     }
 }
