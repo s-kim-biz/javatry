@@ -422,7 +422,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
     public void test_objectOriented_writing_generalization_extractToAbstract() {
         // done kim "int offset = pageSize * (pageNumber - 1)" が全く同じなので、再利用したいですね by jflute (2020/05/20)
         // "テンプレートメソッドパターン" (Template Method Pattern) を調べてみてください。
-        // TODO kim [tips] 一応、テンプレートメソッドパターンについて... by jflute (2020/05/20)
+        // TODO Done kim [tips] 一応、テンプレートメソッドパターンについて... by jflute (2020/05/20)
         // Databaseクラスに、buildPagingQuery() を持たせて...
         //
         //  public String buildPagingQuery(int pageSize, int pageNumber) {
@@ -476,11 +476,11 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
      * (抽象クラス肥大化を抑制するためにも、Animalのbark()のプロセス(処理)をBarkingProcessクラスとして切り出しましょう)
      */
     public void test_objectOriented_writing_withDelegation() {
-        // TODO kim "Animal extends BarkingProcess" になっているけど、"Animal is a BarkingProcess" だろうか？ by jflute (2020/05/20)
+        // TODO Done kim "Animal extends BarkingProcess" になっているけど、"Animal is a BarkingProcess" だろうか？ by jflute (2020/05/20)
         // 意味的に is-a の関係になっていないものを継承しないようにしよう。
-        BarkingProcess bpc = new Cat();
-        BarkingProcess bpd = new Dog();
-        BarkingProcess bpz = new Zombie();
+        BarkingProcess bpc = new BarkingProcess(new Cat());
+        BarkingProcess bpd = new BarkingProcess(new Dog());
+        BarkingProcess bpz = new BarkingProcess(new Zombie());
 
         log(bpc.bark().getBarkWord());
         log(bpd.bark().getBarkWord());

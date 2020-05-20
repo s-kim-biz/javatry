@@ -3,23 +3,24 @@ package org.docksidestage.bizfw.basic.objanimal;
 /**
  * @author s.kim
  */
-public abstract class BarkingProcess {
+public class BarkingProcess {
+
+    private Animal animal = null;
+    // ===================================================================================
+    //                                                                         Consturctor
+    //
+    public BarkingProcess(Animal animal){
+        this.animal = animal;
+    }
+
     // ===================================================================================
     //                                                                               Bark
     //                                                                              ======
     public BarkedSound bark() {
-        breatheIn();
-        prepareAbdominalMuscle();
-        String barkWord = getBarkWord();
-        BarkedSound barkedSound = doBark(barkWord);
+        animal.breatheIn();
+        animal.prepareAbdominalMuscle();
+        String barkWord = animal.getBarkWord();
+        BarkedSound barkedSound = animal.doBark(barkWord);
         return barkedSound;
     }
-
-    protected abstract void breatheIn();
-
-    protected abstract String getBarkWord();
-
-    protected abstract void prepareAbdominalMuscle();
-
-    protected abstract BarkedSound doBark(String barkWord);
 }

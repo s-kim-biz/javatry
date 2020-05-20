@@ -23,7 +23,7 @@ import org.slf4j.LoggerFactory;
  * The object for animal(動物).
  * @author jflute
  */
-public abstract class Animal extends BarkingProcess implements Loudable {
+public abstract class Animal implements Loudable {
 
     // ===================================================================================
     //                                                                          Definition
@@ -49,6 +49,10 @@ public abstract class Animal extends BarkingProcess implements Loudable {
     // ===================================================================================
     //                                                                               Bark
     //
+    public BarkedSound bark() {
+        return new BarkingProcess(this).bark();
+    }
+
     protected void prepareAbdominalMuscle() {
         logger.debug("...Using my abdominal muscle"); // dummy implementation
         downHitPoint();
@@ -81,7 +85,7 @@ public abstract class Animal extends BarkingProcess implements Loudable {
     //                                                                              ======
     @Override
     public String soundLoudly() {
-        return bark().getBarkWord();
+        return this.getBarkWord();
     }
 
     // ===================================================================================

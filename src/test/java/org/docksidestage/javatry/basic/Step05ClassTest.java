@@ -185,7 +185,7 @@ public class Step05ClassTest extends PlainTestCase {
      * (チケットをもらってもOneDayなのかTwoDayなのか区別が付きません。区別を付けられるメソッドを追加しましょう)
      */
     public void test_class_moreFix_type() {
-        // done kim TicketBooth に判定するメソッドを追加するのではなく、Ticket自体で判定できるようにしましょう by jflute (2020/05/20)
+        // TODO Done kim TicketBooth に判定するメソッドを追加するのではなく、Ticket自体で判定できるようにしましょう by jflute (2020/05/20)
         TicketBooth booth = new TicketBooth();
         OneDayTicket oneDayTicket = booth.buyOneDayPassportTicket(10000);
         log(oneDayTicket.getDays());
