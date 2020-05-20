@@ -33,7 +33,8 @@ public class TicketBooth {
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    // TODO kim MAX_QUANTITYはoneDayPassportやtwoDayPassportを共通しているのでしょうか？現実的にどんユースケースでしょうか？ by winkichanwi
+    // TODO done kim MAX_QUANTITYはoneDayPassportやtwoDayPassportを共通しているのでしょうか？現実的にどんユースケースでしょうか？ by winkichanwi
+    // チケットの種類が一つでOnedayPassportかTwodayPassportかによって渡す量が変わってくるだけだと思ったので量は共通のものを使いました
     private int quantity = MAX_QUANTITY;
     private Integer salesProceeds;
 
@@ -46,7 +47,7 @@ public class TicketBooth {
     // ===================================================================================
     //                                                                          Buy Ticket
     //                                                                          ==========
-    // TODO kim buyOneDayPassport と buyOneDayPassportTicket もう少し共通化してみましょう by subaru (2020/04/23)
+    // TODO done kim buyOneDayPassport と buyOneDayPassportTicket もう少し共通化してみましょう by subaru (2020/04/23)
     // この二つは処理としてはほとんど同じで、戻り値だけ違うということだと思うので、共通化できます。
     public void buyOneDayPassport(int handedMoney) {
         isPossibleToBuyPassport(quantity, handedMoney, ONE_DAY_PRICE);
@@ -55,16 +56,12 @@ public class TicketBooth {
     }
 
     public OneDayTicket buyOneDayPassportTicket(int handedMoney) {
-        isPossibleToBuyPassport(quantity, handedMoney, ONE_DAY_PRICE);
-        --quantity;
-        addSalesProceeds(ONE_DAY_PRICE);
+        buyOneDayPassport(handedMoney);
         return new OneDayTicket(ONE_DAY_PRICE);
     }
 
     public TwoDayTicket buyTwoDayPassportTicket(int handedMoney) {
-        isPossibleToBuyPassport(quantity, handedMoney, TWO_DAY_PRICE);
-        quantity -= 2;
-        addSalesProceeds(TWO_DAY_PRICE);
+        buyTwoDayPassport(handedMoney);
         return new TwoDayTicket(TWO_DAY_PRICE);
     }
 
