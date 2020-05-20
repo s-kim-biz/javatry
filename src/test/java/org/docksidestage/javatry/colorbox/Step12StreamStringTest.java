@@ -70,7 +70,7 @@ public class Step12StreamStringTest extends PlainTestCase {
         // というように書くともうちょいスッキリします。
         // いつ map() するか？ いつ filter() するか、うまく調整しよう。
         //
-        // TODO done kim ありがとう。content != null の filter は、要らないと思いますがどうでしょう？ by jflute (2020/05/20)
+        // done kim ありがとう。content != null の filter は、要らないと思いますがどうでしょう？ by jflute (2020/05/20)
         // その一つ前の .map(boxSpace -> boxSpace.getContent()) で null が戻ってきたら自然と filtering されているはずです。
         // そうじゃないにしても、content instanceof String が null は除外されるはずです。
         String answer = colorBoxList.stream()
