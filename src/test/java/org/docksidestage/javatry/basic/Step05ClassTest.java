@@ -15,8 +15,13 @@
  */
 package org.docksidestage.javatry.basic;
 
-import org.docksidestage.bizfw.basic.buyticket.*;
+import org.docksidestage.bizfw.basic.buyticket.FourDayTicket;
+import org.docksidestage.bizfw.basic.buyticket.OneDayTicket;
+import org.docksidestage.bizfw.basic.buyticket.Ticket;
+import org.docksidestage.bizfw.basic.buyticket.TicketBooth;
 import org.docksidestage.bizfw.basic.buyticket.TicketBooth.TicketShortMoneyException;
+import org.docksidestage.bizfw.basic.buyticket.TicketBuyResult;
+import org.docksidestage.bizfw.basic.buyticket.TwoDayTicket;
 import org.docksidestage.unit.PlainTestCase;
 
 /**
@@ -221,6 +226,7 @@ public class Step05ClassTest extends PlainTestCase {
      */
     public void test_class_moreFix_wonder() {
         TicketBooth b = new TicketBooth();
+        // TODO kim buyFourDayPassportTicket() の戻り値の TicketBuyResult で getTicket() を呼ぶと TwoDayTicket が戻ってくるのは矛盾していないかな？ by jflute (2020/05/20)
         FourDayTicket fourDayTicket = new FourDayTicket(b.buyFourDayPassportTicket(50000).getDisplayPrice());
 
         log(fourDayTicket.getDisplayPrice());
@@ -236,7 +242,7 @@ public class Step05ClassTest extends PlainTestCase {
         log(fourDayTicket.isAlreadyIn());
         // your confirmation code here
     }
-    // TODO done kim [質問] これはどういうことだろうか？ by subaru (2020/04/23)
+    // done kim [質問] これはどういうことだろうか？ by subaru (2020/04/23)
     // ごめんなさい、少し意図がわからないのだけど、もし余裕があれば詳しく書いてみてもらえませんか？
     // 可能ならブランチ分けるなどして少し実装してみましょう！
     /*
@@ -267,7 +273,7 @@ public class Step05ClassTest extends PlainTestCase {
     public void test_class_moreFix_yourRefactoring() {
         // write confirmation code here
     }
-    // TODO done kim [comment] いい質問です。 by subaru (2020/04/23)
+    // done kim [comment] いい質問です。 by subaru (2020/04/23)
     // 1 まずは単純に単語を取捨選択すると良いと思います。
     // 今回のケースだと isPossibleToBuyPassport -> isPassportAvailable など
     // 単語を減らしたりすることで意味が通じるならそうするのもありです（もちろん減らしすぎて意味が通じないということにならないように注意です）。

@@ -78,7 +78,7 @@ public class TicketBooth {
         return new TicketBuyResult(handedMoney, TWO_DAY_PRICE);
     }
 
-    // TODO [done] kim 宿題です、こちらもTicketBuyResultを返すように修正してみましょう by winkichanwi
+    // [done] kim 宿題です、こちらもTicketBuyResultを返すように修正してみましょう by winkichanwi
     public TicketBuyResult buyFourDayPassportTicket(int handedMoney) {
         isPossibleToBuyPassport(quantity, handedMoney, FOUR_DAY_PRICE);
         quantity -= 4;
