@@ -6,10 +6,11 @@ package org.docksidestage.bizfw.basic.objanimal;
 public class BarkingProcess {
 
     private Animal animal = null;
+
     // ===================================================================================
     //                                                                         Consturctor
     //
-    public BarkingProcess(Animal animal){
+    public BarkingProcess(Animal animal) {
         this.animal = animal;
     }
 

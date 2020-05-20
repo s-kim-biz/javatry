@@ -171,7 +171,7 @@ public class Step08Java8FunctionTest extends PlainTestCase {
      * </pre>
      */
     public void test_java8_lambda_convertStyle_basic() {
-        // TODO done kim こちら、書き方を変えるエクササイズです。JavaDocの要件通りに書き方を変えてみてください by jflute (2020/05/20)
+        // done kim こちら、書き方を変えるエクササイズです。JavaDocの要件通りに書き方を変えてみてください by jflute (2020/05/20)
         helpCallbackSupplier(() -> {
             return "broadway";
         });

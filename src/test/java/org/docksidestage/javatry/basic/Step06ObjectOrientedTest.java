@@ -422,7 +422,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
     public void test_objectOriented_writing_generalization_extractToAbstract() {
         // done kim "int offset = pageSize * (pageNumber - 1)" が全く同じなので、再利用したいですね by jflute (2020/05/20)
         // "テンプレートメソッドパターン" (Template Method Pattern) を調べてみてください。
-        // TODO Done kim [tips] 一応、テンプレートメソッドパターンについて... by jflute (2020/05/20)
+        // Done kim [tips] 一応、テンプレートメソッドパターンについて... by jflute (2020/05/20)
         // Databaseクラスに、buildPagingQuery() を持たせて...
         //
         //  public String buildPagingQuery(int pageSize, int pageNumber) {
@@ -476,8 +476,20 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
      * (抽象クラス肥大化を抑制するためにも、Animalのbark()のプロセス(処理)をBarkingProcessクラスとして切り出しましょう)
      */
     public void test_objectOriented_writing_withDelegation() {
-        // TODO Done kim "Animal extends BarkingProcess" になっているけど、"Animal is a BarkingProcess" だろうか？ by jflute (2020/05/20)
+        // Done kim "Animal extends BarkingProcess" になっているけど、"Animal is a BarkingProcess" だろうか？ by jflute (2020/05/20)
         // 意味的に is-a の関係になっていないものを継承しないようにしよう。
+        // TODO kim ありがとう。いいね。BarkingProcessの... by jflute (2020/05/20)
+        //
+        // private Animal animal = null;
+        //
+        // ですが、
+        //
+        // BarkingProcess は Immutable でいいので、
+        //
+        // private final Animal animal;
+        //
+        // というように、finalを付けて、コンストラクタでの初期化を前提にしてよいかと思います。
+        //
         BarkingProcess bpc = new BarkingProcess(new Cat());
         BarkingProcess bpd = new BarkingProcess(new Dog());
         BarkingProcess bpz = new BarkingProcess(new Zombie());
