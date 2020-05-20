@@ -171,6 +171,7 @@ public class Step08Java8FunctionTest extends PlainTestCase {
      * </pre>
      */
     public void test_java8_lambda_convertStyle_basic() {
+        // TODO kim こちら、書き方を変えるエクササイズです。JavaDocの要件通りに書き方を変えてみてください by jflute (2020/05/20)
         helpCallbackSupplier(new Supplier<String>() { // sea
             public String get() {
                 return "broadway";
@@ -267,7 +268,8 @@ public class Step08Java8FunctionTest extends PlainTestCase {
 
         String bonvo = facade.selectMember(2).flatMap(mb -> {
             return mb.getWithdrawal();
-        }).map(wdl -> wdl.oldgetPrimaryReason()) // empty returned
+        })
+                .map(wdl -> wdl.oldgetPrimaryReason()) // empty returned
                 .orElse("*no reason");
 
         String dstore = facade.selectMember(3) //
@@ -294,10 +296,11 @@ public class Step08Java8FunctionTest extends PlainTestCase {
         St8Member member = optMember.orElseThrow(() -> new IllegalStateException("over"));
         String sea = "the";
         try {
-            String reason = member.getWithdrawal().map(wdl -> wdl.oldgetPrimaryReason()) // empty
+            String reason = member.getWithdrawal()
+                    .map(wdl -> wdl.oldgetPrimaryReason()) // empty
                     .orElseThrow(() -> {
-                return new IllegalStateException("wave");
-            });
+                        return new IllegalStateException("wave");
+                    });
             sea = reason;
         } catch (IllegalStateException e) {
             sea = e.getMessage();
