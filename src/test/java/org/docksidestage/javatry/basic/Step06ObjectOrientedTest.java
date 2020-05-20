@@ -420,8 +420,22 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
      */
 
     public void test_objectOriented_writing_generalization_extractToAbstract() {
-        // TODO done kim "int offset = pageSize * (pageNumber - 1)" が全く同じなので、再利用したいですね by jflute (2020/05/20)
+        // done kim "int offset = pageSize * (pageNumber - 1)" が全く同じなので、再利用したいですね by jflute (2020/05/20)
         // "テンプレートメソッドパターン" (Template Method Pattern) を調べてみてください。
+        // TODO kim [tips] 一応、テンプレートメソッドパターンについて... by jflute (2020/05/20)
+        // Databaseクラスに、buildPagingQuery() を持たせて...
+        //
+        //  public String buildPagingQuery(int pageSize, int pageNumber) {
+        //      int offset = calcOffSet(pageSize, pageNumber);
+        //      return buildPagingStatement(offset, ...);
+        //  }
+        //
+        //  protected abstract String buildPagingStatement(...) {
+        //  }
+        //
+        // というように、フロー (流れ) 全体を再利用して、細かい詳細だけサブクラスで実装すると再利用率が高いです。
+        // フロー(流れ)も再利用しているので。
+
         Database ms = new St6MySql();
         Database ps = new St6PostgreSql();
 
@@ -435,10 +449,10 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
      * (St6OperationSystem (basic.st6.os) からコンクリートクラスを抽出してみましょう (スーパークラスとサブクラスの関係に))
      */
     public void test_objectOriented_writing_specialization_extractToConcrete() {
-        // TODO done kim "super.setOsType("Mac");" は、super. は不要です by jflute (2020/05/20)
+        // done kim "super.setOsType("Mac");" は、super. は不要です by jflute (2020/05/20)
         // 逆に、super. を付けてしまうと、そのメソッドをオーバーライドしたときに、this のメソッドが呼ばれなくなってしまいます。
         // 確かにその通りです！
-        // TODO done kim せっかく MacOS, WindowsOS と分かれているので、St6OperationSystem 内の if の分岐を無くそう by jflute (2020/05/20)
+        // done kim せっかく MacOS, WindowsOS と分かれているので、St6OperationSystem 内の if の分岐を無くそう by jflute (2020/05/20)
         // コンクリートクラスを抽出したからには、St6OperationSystem の中には MacOS や WindowsOS という言葉を登場させないように。
         String loginIdForMac = "s.kim.for.mac@bizreach.co.jp";
         String relativePath = "javatry/basic/st6";
