@@ -18,12 +18,19 @@ package org.docksidestage.javatry.basic;
 import org.docksidestage.bizfw.basic.buyticket.OneDayTicket;
 import org.docksidestage.bizfw.basic.buyticket.Ticket;
 import org.docksidestage.bizfw.basic.buyticket.TicketBooth;
-import org.docksidestage.bizfw.basic.objanimal.*;
+import org.docksidestage.bizfw.basic.objanimal.Animal;
+import org.docksidestage.bizfw.basic.objanimal.BarkedSound;
+import org.docksidestage.bizfw.basic.objanimal.BarkingProcess;
+import org.docksidestage.bizfw.basic.objanimal.Cat;
+import org.docksidestage.bizfw.basic.objanimal.Dog;
+import org.docksidestage.bizfw.basic.objanimal.Tetrapod;
+import org.docksidestage.bizfw.basic.objanimal.Tiger;
+import org.docksidestage.bizfw.basic.objanimal.Zombie;
 import org.docksidestage.bizfw.basic.objanimal.loud.AlarmClock;
 import org.docksidestage.bizfw.basic.objanimal.loud.Loudable;
 import org.docksidestage.bizfw.basic.objanimal.runner.FastRunner;
-import org.docksidestage.javatry.basic.st6.dbms.St6MySql;
 import org.docksidestage.javatry.basic.st6.dbms.Database;
+import org.docksidestage.javatry.basic.st6.dbms.St6MySql;
 import org.docksidestage.javatry.basic.st6.dbms.St6PostgreSql;
 import org.docksidestage.javatry.basic.st6.os.St6MacOS;
 import org.docksidestage.javatry.basic.st6.os.St6OldWindowsOS;
@@ -386,7 +393,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         Animal c = new Cat();
         Animal d = new Dog();
         Animal t = new Tiger();
-
+        
         cannot use of Tetrapod class.
          */
 
@@ -413,6 +420,8 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
      */
 
     public void test_objectOriented_writing_generalization_extractToAbstract() {
+        // TODO kim "int offset = pageSize * (pageNumber - 1)" が全く同じなので、再利用したいですね by jflute (2020/05/20)
+        // "テンプレートメソッドパターン" (Template Method Pattern) を調べてみてください。
         Database ms = new St6MySql();
         Database ps = new St6PostgreSql();
 
@@ -426,6 +435,10 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
      * (St6OperationSystem (basic.st6.os) からコンクリートクラスを抽出してみましょう (スーパークラスとサブクラスの関係に))
      */
     public void test_objectOriented_writing_specialization_extractToConcrete() {
+        // TODO kim "super.setOsType("Mac");" は、super. は不要です by jflute (2020/05/20)
+        // 逆に、super. を付けてしまうと、そのメソッドをオーバーライドしたときに、this のメソッドが呼ばれなくなってしまいます。
+        // TODO kim せっかく MacOS, WindowsOS と分かれているので、St6OperationSystem 内の if の分岐を無くそう by jflute (2020/05/20)
+        // コンクリートクラスを抽出したからには、St6OperationSystem の中には MacOS や WindowsOS という言葉を登場させないように。
         String loginIdForMac = "s.kim.for.mac@bizreach.co.jp";
         String relativePath = "javatry/basic/st6";
         St6OperationSystem mac = new St6MacOS(loginIdForMac);
@@ -448,6 +461,8 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
      * (抽象クラス肥大化を抑制するためにも、Animalのbark()のプロセス(処理)をBarkingProcessクラスとして切り出しましょう)
      */
     public void test_objectOriented_writing_withDelegation() {
+        // TODO kim "Animal extends BarkingProcess" になっているけど、"Animal is a BarkingProcess" だろうか？ by jflute (2020/05/20)
+        // 意味的に is-a の関係になっていないものを継承しないようにしよう。
         BarkingProcess bpc = new Cat();
         BarkingProcess bpd = new Dog();
         BarkingProcess bpz = new Zombie();
