@@ -81,12 +81,12 @@ public class TicketBooth {
         return new TicketBuyResult(handedMoney, TWO_DAY_PRICE);
     }
 
-    // TODO kim 宿題です、こちらもTicketBuyResultを返すように修正してみましょう by winkichanwi
-    public FourDayTicket buyFourDayPassportTicket(int handedMoney) {
+    // TODO [done] kim 宿題です、こちらもTicketBuyResultを返すように修正してみましょう by winkichanwi
+    public TicketBuyResult buyFourDayPassportTicket(int handedMoney) {
         isPossibleToBuyPassport(quantity, handedMoney, FOUR_DAY_PRICE);
         quantity -= 4;
         addSalesProceeds(FOUR_DAY_PRICE);
-        return new FourDayTicket(FOUR_DAY_PRICE);
+        return new TicketBuyResult(handedMoney, FOUR_DAY_PRICE);
     }
 
     private void isPossibleToBuyPassport(int quantity, int handedMoney, int price) {

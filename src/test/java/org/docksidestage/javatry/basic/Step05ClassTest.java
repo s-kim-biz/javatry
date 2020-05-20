@@ -221,7 +221,7 @@ public class Step05ClassTest extends PlainTestCase {
      */
     public void test_class_moreFix_wonder() {
         TicketBooth b = new TicketBooth();
-        FourDayTicket fourDayTicket = b.buyFourDayPassportTicket(50000);
+        FourDayTicket fourDayTicket = new FourDayTicket(b.buyFourDayPassportTicket(50000).getDisplayPrice());
 
         log(fourDayTicket.getDisplayPrice());
 
@@ -236,7 +236,7 @@ public class Step05ClassTest extends PlainTestCase {
         log(fourDayTicket.isAlreadyIn());
         // your confirmation code here
     }
-    // TODO kim [質問] これはどういうことだろうか？ by subaru (2020/04/23)
+    // TODO done kim [質問] これはどういうことだろうか？ by subaru (2020/04/23)
     // ごめんなさい、少し意図がわからないのだけど、もし余裕があれば詳しく書いてみてもらえませんか？
     // 可能ならブランチ分けるなどして少し実装してみましょう！
     /*
@@ -267,7 +267,7 @@ public class Step05ClassTest extends PlainTestCase {
     public void test_class_moreFix_yourRefactoring() {
         // write confirmation code here
     }
-    // TODO DONE [comment] いい質問です。 by subaru (2020/04/23)
+    // TODO done kim [comment] いい質問です。 by subaru (2020/04/23)
     // 1 まずは単純に単語を取捨選択すると良いと思います。
     // 今回のケースだと isPossibleToBuyPassport -> isPassportAvailable など
     // 単語を減らしたりすることで意味が通じるならそうするのもありです（もちろん減らしすぎて意味が通じないということにならないように注意です）。
