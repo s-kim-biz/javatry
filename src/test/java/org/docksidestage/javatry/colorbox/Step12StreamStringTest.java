@@ -15,6 +15,7 @@
  */
 package org.docksidestage.javatry.colorbox;
 
+import java.io.File;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -303,7 +304,7 @@ public class Step12StreamStringTest extends PlainTestCase {
      */
     public void test_replace_remove_o() {
         List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
-        int length = colorBoxList.stream()
+        int newLength = colorBoxList.stream()
                 .flatMap(colorBox -> colorBox.getSpaceList().stream())
                 .map(boxSpace -> boxSpace.getContent())
                 .filter(content -> content instanceof String && ((String)content).contains("o"))
@@ -315,7 +316,7 @@ public class Step12StreamStringTest extends PlainTestCase {
                 .replace("o","")
                 .length();
 
-        log(length);
+        log(newLength);
     }
 
     /**
@@ -323,6 +324,20 @@ public class Step12StreamStringTest extends PlainTestCase {
      * カラーボックスに入ってる java.io.File のパス文字列のファイルセパレーターの "/" を、Windowsのファイルセパレーターに置き換えた文字列は？
      */
     public void test_replace_fileseparator() {
+        List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
+        String newPath = colorBoxList.stream()
+                .flatMap(colorBox -> colorBox.getSpaceList().stream())
+                .map(boxSpace -> boxSpace.getContent())
+                .filter(content -> content instanceof File)
+                .map(content -> (File)content)
+                .findFirst()
+                .orElseGet(() -> {
+                    throw new RuntimeException("there is no File class instance");
+                })
+                .getPath()
+                .replace("/","\\");
+
+        log(newPath);
     }
 
     // ===================================================================================
