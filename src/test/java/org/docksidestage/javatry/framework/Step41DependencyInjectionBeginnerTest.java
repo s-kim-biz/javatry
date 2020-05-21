@@ -126,6 +126,9 @@ public class Step41DependencyInjectionBeginnerTest extends PlainTestCase {
      * (眠い猫のヒットポイントをこのメソッド内で増やしてもOK))
      */
     public void test_usingdi_UsingDiWebFrameworkProcess_callfriend_annotation_delegating() {
+        UsingDiWebFrameworkProcess usingDiWebFrameworkProcess = new UsingDiWebFrameworkProcess();
+        usingDiWebFrameworkProcess.requestAnnotationCallFriend();
+        usingDiWebFrameworkProcess.requestDelegatingCallFriend();
         // execution code here
     }
 

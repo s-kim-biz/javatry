@@ -62,6 +62,11 @@ public class UsingDiWebFrameworkProcess { // like mock of web framework with DI 
 
     private UsingDiAnnotationAction prepareAnnotationAction() {
         SimpleDiContainer container = SimpleDiContainer.getInstance();
+        container.registerModule(componentMap -> {
+            componentMap.put(UsingDiAnnotationAction.class, new UsingDiAnnotationAction());
+            componentMap.put(Animal.class, new Dog());
+        });
+        container.resolveDependency();
         return (UsingDiAnnotationAction) container.getComponent(UsingDiAnnotationAction.class);
     }
 
@@ -80,6 +85,11 @@ public class UsingDiWebFrameworkProcess { // like mock of web framework with DI 
 
     private UsingDiDelegatingAction prepareDelegatingAction() {
         SimpleDiContainer container = SimpleDiContainer.getInstance();
+        container.registerModule(componentMap -> {
+            componentMap.put(UsingDiDelegatingAction.class, new UsingDiDelegatingAction());
+            componentMap.put(UsingDiDelegatingLogic.class, new UsingDiDelegatingLogic());
+        });
+        container.resolveDependency();
         return (UsingDiDelegatingAction) container.getComponent(UsingDiDelegatingAction.class);
     }
 }
