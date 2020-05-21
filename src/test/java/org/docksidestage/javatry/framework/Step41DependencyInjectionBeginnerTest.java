@@ -86,7 +86,7 @@ public class Step41DependencyInjectionBeginnerTest extends PlainTestCase {
      * What is the difference between UsingDiAccessorAction and UsingDiAnnotationAction? <br>
      * (UsingDiAccessorAction と UsingDiAnnotationAction の違いは？)
      */
-    public void test_usingdi_difference_between_Accessor_and_Annotation() {
+    public void est_usingdi_difference_between_Accessor_and_Annotation() {
         // your answer? => annotationを使う場合はそのままアノテーションとしてDIされているので使えばいい
         // しかし、Accessorを使う場合には変数を利用する前に必ずセットしないといけないので
         // その不便さがあるかと思った。
@@ -98,7 +98,10 @@ public class Step41DependencyInjectionBeginnerTest extends PlainTestCase {
      * (UsingDiAnnotationAction と UsingDiDelegatingAction の違いは？)
      */
     public void test_usingdi_difference_between_Annotation_and_Delegating() {
-        // your answer? => 
+        // your answer? => DelegatingActionであるとまとめてInjectionするので
+        // コードが見やすくなると思う。ただし、まとめてInjectionするので
+        // クラスによってはまとめてInjectionしたもの全てを使うのではなく一部分だけを使いたいにも関わらず全部Injectionするので
+        // Overheadがかかる可能性があると考えた。
         // and your confirmation code here freely
     }
 

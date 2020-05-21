@@ -27,7 +27,7 @@ import org.docksidestage.bizfw.exception.ExceptionMessageBuilder;
 /**
  * @author jflute
  */
-public class SimpleDiContainer extends Dog {
+public class SimpleDiContainer {
 
     // ===================================================================================
     //                                                                Singleton Definition
