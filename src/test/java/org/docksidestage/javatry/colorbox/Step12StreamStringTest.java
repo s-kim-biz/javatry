@@ -16,10 +16,7 @@
 package org.docksidestage.javatry.colorbox;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import org.docksidestage.bizfw.colorbox.ColorBox;
@@ -410,6 +407,43 @@ public class Step12StreamStringTest extends PlainTestCase {
      * (カラーボックスの中に入っている java.util.Map を "map:{ key = value ; key = map:{ key = value ; ... } ; ... }" という形式で表示すると？)
      */
     public void test_showMap_nested() {
+
+
+
+        class MapTranslator {
+            String tarnslate(List<String> list, Map map){
+                String translationStart = "map:{ ";
+                String translationEnd = "} ; ";
+
+                map.forEach((key,value) -> {
+                    if(value instanceof Map)
+                        list.add(key + " : " + this.tarnslate(list, (Map)value));
+                    else
+                        list.add(key + " : " + value + " ; ");
+                });
+                return translationStart + String.join("",list) + translationEnd;
+            }
+        }
+
+        List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
+
+        // for nested string
+        List<String> list = new LinkedList<>();
+
+        // for translation
+        MapTranslator mapTranslator = new MapTranslator();
+
+        colorBoxList.stream()
+                .flatMap(colorBox -> colorBox.getSpaceList().stream())
+                .map(boxSpace -> boxSpace.getContent())
+                .filter(content -> content instanceof Map)
+                .map(content -> (Map)content)
+                .forEach(map -> mapTranslator.tarnslate(list , map));
+
+        String translationStart = "map:{ ";
+        String translationEnd = "}";
+
+        log(translationStart + String.join("",list) + translationEnd);
     }
 
     // ===================================================================================
