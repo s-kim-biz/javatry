@@ -221,6 +221,35 @@ public class Step12StreamStringTest extends PlainTestCase {
      * (カラーボックスに入ってる「ど」を二つ以上含む文字列で、最後の「ど」は何文字目から始まる？ (e.g. "どんどん" => 3))
      */
     public void test_lastIndexOf_findIndex() {
+
+        class Match {
+            Match() {}
+            boolean containsAtLeastTwoTimes(String target, String part) {
+                if(target == null || part == null) return false;
+
+                int indexOfPart = target.indexOf(part);
+                int lastIndexOfPart = target.lastIndexOf(part);
+
+                return indexOfPart != -1 && indexOfPart != lastIndexOfPart;
+            }
+        };
+
+        // for boolean method
+        Match match = new Match();
+
+        List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
+        int position = colorBoxList.stream()
+                .flatMap(colorBox -> colorBox.getSpaceList().stream())
+                .map(boxSpace -> boxSpace.getContent())
+                .filter(content -> content instanceof String && match.containsAtLeastTwoTimes((String)content,"ど"))
+                .findFirst()
+                .orElseGet(() -> {
+                    throw new RuntimeException("there is no word that contains 'ど' at least two times");
+                })
+                .toString()
+                .lastIndexOf("ど");
+
+        log(position);
     }
 
     // ===================================================================================
