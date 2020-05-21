@@ -15,6 +15,8 @@
  */
 package org.docksidestage.bizfw.di.usingdi;
 
+import org.docksidestage.bizfw.basic.objanimal.Animal;
+import org.docksidestage.bizfw.basic.objanimal.Dog;
 import org.docksidestage.bizfw.di.container.SimpleDiContainer;
 
 /**
@@ -27,6 +29,7 @@ public class UsingDiWebFrameworkProcess { // like mock of web framework with DI 
     //                                                                     ===============
     public void requestAccessorCallFriend() { // e.g. /accessor/callfriends/
         UsingDiAccessorAction action = prepareAccessorAction();
+        action.setAnimal(new Dog());
         action.callFriend();
     }
 
@@ -37,6 +40,10 @@ public class UsingDiWebFrameworkProcess { // like mock of web framework with DI 
 
     private UsingDiAccessorAction prepareAccessorAction() {
         SimpleDiContainer container = SimpleDiContainer.getInstance();
+        container.registerModule(componentMap -> {
+            componentMap.put(UsingDiAccessorAction.class, new UsingDiAccessorAction());
+        });
+        container.resolveDependency();
         return (UsingDiAccessorAction) container.getComponent(UsingDiAccessorAction.class);
     }
 

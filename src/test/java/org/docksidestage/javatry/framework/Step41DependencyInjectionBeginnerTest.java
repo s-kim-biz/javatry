@@ -15,6 +15,7 @@
  */
 package org.docksidestage.javatry.framework;
 
+import org.docksidestage.bizfw.di.usingdi.UsingDiWebFrameworkProcess;
 import org.docksidestage.unit.PlainTestCase;
 
 /**
@@ -113,6 +114,8 @@ public class Step41DependencyInjectionBeginnerTest extends PlainTestCase {
      * (accessor の Action の callFriend() を UsingDiWebFrameworkProcess 経由で実行してみましょう)
      */
     public void test_usingdi_UsingDiWebFrameworkProcess_callfriend_accessor() {
+        UsingDiWebFrameworkProcess usingDiWebFrameworkProcess = new UsingDiWebFrameworkProcess();
+        usingDiWebFrameworkProcess.requestAccessorCallFriend();
         // execution code here
     }
 
