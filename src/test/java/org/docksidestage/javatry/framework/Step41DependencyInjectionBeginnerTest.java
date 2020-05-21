@@ -21,7 +21,7 @@ import org.docksidestage.unit.PlainTestCase;
  * The test of Dependency Injection (DI) as beginner level. <br>
  * Show answer by log() or write answer on comment for question of javadoc.
  * @author jflute
- * @author your_name_here
+ * @author s.kim
  */
 public class Step41DependencyInjectionBeginnerTest extends PlainTestCase {
 
@@ -38,7 +38,7 @@ public class Step41DependencyInjectionBeginnerTest extends PlainTestCase {
         // - - - - - (your answer?)
         // Dependency Injectionとはオブジェクト間のHardであった依存関係をなくすこと
         // こういうすることで、依存しているクラスに変更が起きても
-        // 依存される側気にせずに（変更をせずに）使えるのコードをReafactoringする際の効率が上がる。
+        // 依存される側気にせずに（変更をせずに）使えるので、コードをReafactoringする際の効率が上がる。
         // _/_/_/_/_/_/_/_/_/_/
     }
 
@@ -50,7 +50,7 @@ public class Step41DependencyInjectionBeginnerTest extends PlainTestCase {
      * (NonDiDirectFirstAction と NonDiDirectSecondAction の違いは？)
      */
     public void test_nondi_difference_between_first_and_second() {
-        // your answer? => 
+        // your answer? => 違いはメソッドを実行する際の目的となる動作を起こす際にその前に別の動作が必要であるかどうかの違いがあると思う
         // and your confirmation code here freely
     }
 
@@ -59,7 +59,11 @@ public class Step41DependencyInjectionBeginnerTest extends PlainTestCase {
      * (NonDiDirectSecondAction と NonDiFactoryMethodAction の違いは？)
      */
     public void test_nondi_difference_between_second_and_FactoryMethod() {
-        // your answer? => 
+        // your answer? =>
+        // Factory methodの場合はTooLazyDogやCatに変更が起きてもCreateAnimal()だけ修正すればいいが、
+        // NonDiDirectionSecondActionではcallFriend(),wakeupMe()を全部修正しないといけない
+        // Supercar processingでもFactory methodではSupercarと関連するクラスに何か変更が有った場合、createSupercarDealer()だけ変更すればいいが
+        // NonDiDirectionSecondActionではgoToOffice(),sendGift()全部変更しないといけない
         // and your confirmation code here freely
     }
 
@@ -68,7 +72,10 @@ public class Step41DependencyInjectionBeginnerTest extends PlainTestCase {
      * (NonDiFactoryMethodAction と NonDiIndividualFactoryAction の違いは？)
      */
     public void test_nondi_difference_between_FactoryMethod_and_IndividualFactory() {
-        // your answer? => 
+        // your answer? =>
+        // individualFactoryの場合はもし、今のクラス以外でCreateAnimal()のような動作があるときに、もしTooLazyDogやCatに変更が起きてもNonDiAnimalFactory中の
+        // CreateAnimal()だけを変更すれば良い
+        // しかし、nondiFactoryMethodActionのような実装の場合はTooLazyDog,Catと関わるすべてのクラスを変更しないといけない
         // and your confirmation code here freely
     }
 
