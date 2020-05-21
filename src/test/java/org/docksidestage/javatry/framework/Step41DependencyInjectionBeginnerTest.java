@@ -36,9 +36,9 @@ public class Step41DependencyInjectionBeginnerTest extends PlainTestCase {
         // _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
         // What is Dependency Injection?
         // - - - - - (your answer?)
-        //
-        //
-        //
+        // Dependency Injectionとはオブジェクト間のHardであった依存関係をなくすこと
+        // こういうすることで、依存しているクラスに変更が起きても
+        // 依存される側気にせずに（変更をせずに）使えるのコードをReafactoringする際の効率が上がる。
         // _/_/_/_/_/_/_/_/_/_/
     }
 

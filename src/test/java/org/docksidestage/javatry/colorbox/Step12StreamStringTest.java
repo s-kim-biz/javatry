@@ -393,7 +393,7 @@ public class Step12StreamStringTest extends PlainTestCase {
                 .map(boxSpace -> boxSpace.getContent())
                 .filter(content -> content instanceof Map)
                 .map(content -> (Map)content)
-                .forEach(map -> map.forEach((key,value)-> keyAndValues.add(key + " : " + value + " ; ")));
+                .forEach(map -> map.forEach((key,value)-> keyAndValues.add(key + " = " + value + " ; ")));
 
         String startShowMap = "map:{ ";
         String endShowMap = " }";
@@ -408,8 +408,6 @@ public class Step12StreamStringTest extends PlainTestCase {
      */
     public void test_showMap_nested() {
 
-
-
         class MapTranslator {
             String tarnslate(List<String> list, Map map){
                 String translationStart = "map:{ ";
@@ -417,9 +415,9 @@ public class Step12StreamStringTest extends PlainTestCase {
 
                 map.forEach((key,value) -> {
                     if(value instanceof Map)
-                        list.add(key + " : " + this.tarnslate(list, (Map)value));
+                        list.add(key + " = " + this.tarnslate(list, (Map)value));
                     else
-                        list.add(key + " : " + value + " ; ");
+                        list.add(key + " = " + value + " ; ");
                 });
                 return translationStart + String.join("",list) + translationEnd;
             }
