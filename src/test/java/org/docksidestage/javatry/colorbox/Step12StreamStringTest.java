@@ -280,6 +280,18 @@ public class Step12StreamStringTest extends PlainTestCase {
      * (カラーボックスに入ってる "Water" で始まる文字列の最後の一文字は？)
      */
     public void test_substring_findLastChar() {
+        List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
+        String target = colorBoxList.stream()
+                .flatMap(colorBox -> colorBox.getSpaceList().stream())
+                .map(boxSpace -> boxSpace.getContent())
+                .filter(content -> content instanceof String && ((String)content).startsWith("Water"))
+                .map(content -> (String)content)
+                .findFirst()
+                .orElseGet(() -> {
+                    throw new RuntimeException("there is no word that ends with 'front'");
+                });
+
+        log(target.charAt(target.length()-1));
     }
 
     // ===================================================================================
