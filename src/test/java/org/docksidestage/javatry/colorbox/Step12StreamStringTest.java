@@ -16,8 +16,10 @@
 package org.docksidestage.javatry.colorbox;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.docksidestage.bizfw.colorbox.ColorBox;
@@ -212,7 +214,7 @@ public class Step12StreamStringTest extends PlainTestCase {
                 .orElseGet(() -> {
                     throw new RuntimeException("there is no word that ends with 'front'");
                 })
-                .indexOf("front");
+                .indexOf("front")+1;
 
         log(position);
     }
@@ -248,7 +250,7 @@ public class Step12StreamStringTest extends PlainTestCase {
                 .orElseGet(() -> {
                     throw new RuntimeException("there is no word that contains 'ど' at least two times");
                 })
-                .lastIndexOf("ど");
+                .lastIndexOf("ど")+1;
 
         log(position);
     }
@@ -365,6 +367,7 @@ public class Step12StreamStringTest extends PlainTestCase {
                     try{
                         text = devilBox.getText();
                     } catch (YourPrivateRoom.DevilBoxTextNotFoundException e) {
+                        // 例外である場合にはそのままtextの中身をnullにして入れるようにするため
                     } finally {
                         return text;
                     }
@@ -384,6 +387,22 @@ public class Step12StreamStringTest extends PlainTestCase {
      * (カラーボックスの中に入っている java.util.Map を "map:{ key = value ; key = value ; ... }" という形式で表示すると？)
      */
     public void test_showMap_flat() {
+        List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
+
+        List<String> keyAndValues = new ArrayList<String>();
+
+        colorBoxList.stream()
+                .flatMap(colorBox -> colorBox.getSpaceList().stream())
+                .map(boxSpace -> boxSpace.getContent())
+                .filter(content -> content instanceof Map)
+                .map(content -> (Map)content)
+                .forEach(map -> map.forEach((key,value)-> keyAndValues.add(key + " : " + value + " ; ")));
+
+        String startShowMap = "map:{ ";
+        String endShowMap = " }";
+
+        log(startShowMap + String.join("",keyAndValues) + endShowMap);
+
     }
 
     /**
