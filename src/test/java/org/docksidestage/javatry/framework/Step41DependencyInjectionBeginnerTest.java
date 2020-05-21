@@ -137,7 +137,7 @@ public class Step41DependencyInjectionBeginnerTest extends PlainTestCase {
      * (UsingDiAnnotationAction のインスタンス変数 "animal" の実体クラスは？ (UsingDiModuleを登録した時))
      */
     public void test_usingdi_whatis_animal() {
-        // your answer? => 
+        // your answer? => TooLazyDog("tofu")
         // and your confirmation code here freely
     }
 
