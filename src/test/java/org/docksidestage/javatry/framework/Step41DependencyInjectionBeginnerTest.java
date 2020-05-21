@@ -87,7 +87,9 @@ public class Step41DependencyInjectionBeginnerTest extends PlainTestCase {
      * (UsingDiAccessorAction と UsingDiAnnotationAction の違いは？)
      */
     public void test_usingdi_difference_between_Accessor_and_Annotation() {
-        // your answer? => 
+        // your answer? => annotationを使う場合はそのままアノテーションとしてDIされているので使えばいい
+        // しかし、Accessorを使う場合には変数を利用する前に必ずセットしないといけないので
+        // その不便さがあるかと思った。
         // and your confirmation code here freely
     }
 
